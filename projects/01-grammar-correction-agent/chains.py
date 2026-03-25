@@ -10,7 +10,6 @@ Key LangChain concepts demonstrated:
 - @traceable: making function calls visible in LangSmith
 """
 
-import os
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -25,14 +24,6 @@ from models import GrammarFeedback
 # This must happen before instantiating ChatAnthropic so the API key is present.
 _repo_root = Path(__file__).resolve().parents[2]
 load_dotenv(_repo_root / ".env")
-
-# The .env file uses ANTHROPIC-API-KEY (hyphens) rather than the standard
-# ANTHROPIC_API_KEY (underscores) that the Anthropic SDK expects.
-# Normalise here so the SDK picks it up automatically.
-if not os.environ.get("ANTHROPIC_API_KEY"):
-    _alt = os.environ.get("ANTHROPIC-API-KEY")
-    if _alt:
-        os.environ["ANTHROPIC_API_KEY"] = _alt
 
 # -- Prompt Template --
 # ChatPromptTemplate organizes system + human messages into a reusable template.
