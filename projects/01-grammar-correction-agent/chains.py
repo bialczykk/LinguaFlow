@@ -75,7 +75,7 @@ _analysis_chain = ANALYSIS_PROMPT | _model.with_structured_output(
 )
 
 
-@traceable(name="grammar_analysis", run_type="chain")
+@traceable(name="grammar_analysis", run_type="chain", tags=["p1-grammar-correction"])
 def analyze_grammar(student_text: str) -> GrammarFeedback:
     """Analyze student writing and return structured grammar feedback.
 

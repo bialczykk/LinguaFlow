@@ -123,8 +123,11 @@ def main():
         "finalize": "Finalizing lesson plan...",
     }
 
+    # Pass tags in the config so LangSmith traces can be filtered by project
+    run_config = {"tags": ["p2-lesson-plan-generator"]}
+
     final_state = None
-    for chunk in graph.stream(initial_state, stream_mode="updates"):
+    for chunk in graph.stream(initial_state, config=run_config, stream_mode="updates"):
         for node_name in chunk:
             label = node_labels.get(node_name, node_name)
             print(f"  [{node_name}] {label}")
@@ -139,7 +142,7 @@ def main():
         final_state = chunk
 
     # Get the complete final state by invoking (stream doesn't return full state easily)
-    result = graph.invoke(initial_state)
+    result = graph.invoke(initial_state, config=run_config)
     plan = result["final_plan"]
 
     if plan:

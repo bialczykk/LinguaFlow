@@ -90,7 +90,7 @@ class ConversationHandler:
             )
         ]
 
-    @traceable(name="grammar_followup", run_type="chain")
+    @traceable(name="grammar_followup", run_type="chain", tags=["p1-grammar-correction"])
     def ask(self, user_message: str) -> str:
         """Send a follow-up message and return the tutor's reply.
 

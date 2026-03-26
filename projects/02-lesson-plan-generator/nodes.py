@@ -57,7 +57,7 @@ def _build_revision_context(state: LessonPlanState) -> str:
     return ""
 
 
-@traceable(name="research", run_type="chain")
+@traceable(name="research", run_type="chain", tags=["p2-lesson-plan-generator"])
 def research_node(state: LessonPlanState) -> dict:
     """Research node: suggests materials and activities based on the student profile."""
     profile = state["student_profile"]
@@ -72,7 +72,7 @@ def research_node(state: LessonPlanState) -> dict:
     return {"research_notes": result.content}
 
 
-@traceable(name="draft_conversation", run_type="chain")
+@traceable(name="draft_conversation", run_type="chain", tags=["p2-lesson-plan-generator"])
 def draft_conversation_node(state: LessonPlanState) -> dict:
     """Draft node for conversation-focused lessons."""
     profile = state["student_profile"]
@@ -88,7 +88,7 @@ def draft_conversation_node(state: LessonPlanState) -> dict:
     return {"draft_plan": result.content}
 
 
-@traceable(name="draft_grammar", run_type="chain")
+@traceable(name="draft_grammar", run_type="chain", tags=["p2-lesson-plan-generator"])
 def draft_grammar_node(state: LessonPlanState) -> dict:
     """Draft node for grammar-focused lessons."""
     profile = state["student_profile"]
@@ -104,7 +104,7 @@ def draft_grammar_node(state: LessonPlanState) -> dict:
     return {"draft_plan": result.content}
 
 
-@traceable(name="draft_exam_prep", run_type="chain")
+@traceable(name="draft_exam_prep", run_type="chain", tags=["p2-lesson-plan-generator"])
 def draft_exam_prep_node(state: LessonPlanState) -> dict:
     """Draft node for exam preparation lessons."""
     profile = state["student_profile"]
@@ -120,7 +120,7 @@ def draft_exam_prep_node(state: LessonPlanState) -> dict:
     return {"draft_plan": result.content}
 
 
-@traceable(name="review", run_type="chain")
+@traceable(name="review", run_type="chain", tags=["p2-lesson-plan-generator"])
 def review_node(state: LessonPlanState) -> dict:
     """Review node: critiques the draft and decides whether to approve."""
     profile = state["student_profile"]
@@ -143,7 +143,7 @@ def review_node(state: LessonPlanState) -> dict:
     }
 
 
-@traceable(name="finalize", run_type="chain")
+@traceable(name="finalize", run_type="chain", tags=["p2-lesson-plan-generator"])
 def finalize_node(state: LessonPlanState) -> dict:
     """Finalize node: parses the draft into a structured LessonPlan."""
     profile = state["student_profile"]

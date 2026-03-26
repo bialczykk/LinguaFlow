@@ -86,7 +86,7 @@ class IntakeConversation:
         self._messages = [SystemMessage(content=INTAKE_SYSTEM_PROMPT)]
         self._complete = False
 
-    @traceable(name="intake_ask", run_type="chain")
+    @traceable(name="intake_ask", run_type="chain", tags=["p2-lesson-plan-generator"])
     def ask(self, user_message: str) -> str:
         """Send a user message and get the LLM's response.
 
@@ -123,7 +123,7 @@ class IntakeConversation:
         """
         return self._complete
 
-    @traceable(name="intake_extract_profile", run_type="chain")
+    @traceable(name="intake_extract_profile", run_type="chain", tags=["p2-lesson-plan-generator"])
     def get_profile(self) -> StudentProfile:
         """Extract a structured StudentProfile from the conversation history.
 
