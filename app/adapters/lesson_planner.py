@@ -15,10 +15,10 @@ _P2_DIR = _REPO_ROOT / "projects" / "02-lesson-plan-generator"
 if str(_P2_DIR) not in sys.path:
     sys.path.insert(0, str(_P2_DIR))
 
-# -- Load environment --
-from dotenv import load_dotenv  # noqa: E402
+# -- Load environment (root .env + Streamlit Cloud secrets) --
+from adapters._env import ensure_repo_env  # noqa: E402
 
-load_dotenv(_REPO_ROOT / ".env")
+ensure_repo_env()
 
 # -- Clear cached modules from other projects, then import P2 modules --
 clear_project_modules()

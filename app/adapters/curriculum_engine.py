@@ -9,6 +9,7 @@ a decision via Command(resume=...).
 """
 
 import sys
+import traceback
 import uuid
 from pathlib import Path
 
@@ -20,12 +21,13 @@ _PROJECT_DIR = _REPO_ROOT / "projects" / "07-curriculum-engine"
 if str(_PROJECT_DIR) not in sys.path:
     sys.path.insert(0, str(_PROJECT_DIR))
 
-# -- Load environment --
-from dotenv import load_dotenv  # noqa: E402
-load_dotenv(_REPO_ROOT / ".env")
+# -- Load environment (root .env + Streamlit Cloud secrets) --
+from adapters._env import ensure_repo_env  # noqa: E402
+ensure_repo_env()
 
 # -- CRITICAL: Clear cached modules, then import project modules --
 clear_project_modules()
+from agents import get_shared_store  # noqa: E402
 from graph import build_graph  # noqa: E402
 from data.sample_requests import SAMPLE_REQUESTS  # noqa: E402
 from models import CEFR_LEVELS  # noqa: E402
@@ -35,7 +37,8 @@ from langgraph.checkpoint.memory import InMemorySaver  # noqa: E402
 from langgraph.types import Command  # noqa: E402
 
 _checkpointer = InMemorySaver()
-_graph = build_graph(checkpointer=_checkpointer)
+# DeepAgents with StoreBackend require the same Store on the parent graph runtime.
+_graph = build_graph(checkpointer=_checkpointer, store=get_shared_store())
 
 # -- Step names for progress tracking --
 STEPS = [
@@ -52,6 +55,15 @@ STEPS = [
 
 # Review steps where HITL interrupt happens
 REVIEW_STEPS = {"review_plan", "review_lesson", "review_exercises", "review_assessment"}
+
+
+def _normalize_resume_decision(decision: object) -> dict:
+    """Normalize moderator decision to the dict format expected by review nodes."""
+    if isinstance(decision, dict):
+        return decision
+    if isinstance(decision, str):
+        return {"action": decision}
+    raise TypeError(f"Invalid decision type: {type(decision).__name__}")
 
 
 def get_sample_requests() -> list[dict]:
@@ -116,8 +128,10 @@ def resume_pipeline(thread_id: str, decision: dict) -> dict | None:
     }
 
     try:
-        _graph.invoke(Command(resume=decision), config=config)
+        normalized_decision = _normalize_resume_decision(decision)
+        _graph.invoke(Command(resume=normalized_decision), config=config)
     except Exception as e:
+        traceback.print_exc()
         raise RuntimeError(f"Pipeline resume failed: {e}") from e
 
     return _get_interrupt_value(thread_id)
@@ -148,10 +162,18 @@ def _get_interrupt_value(thread_id: str) -> dict | None:
     config = {"configurable": {"thread_id": thread_id}}
     try:
         snapshot = _graph.get_state(config)
+        # Newer LangGraph snapshots may expose interrupts directly.
+        snapshot_interrupts = getattr(snapshot, "interrupts", None)
+        if snapshot_interrupts:
+            first = snapshot_interrupts[0]
+            return first.value if hasattr(first, "value") else first
+
         if snapshot.next:
             for task in snapshot.tasks:
-                if hasattr(task, "interrupts") and task.interrupts:
-                    return task.interrupts[0].value
+                task_interrupts = getattr(task, "interrupts", None)
+                if task_interrupts:
+                    first = task_interrupts[0]
+                    return first.value if hasattr(first, "value") else first
         return None
     except Exception:
         return None

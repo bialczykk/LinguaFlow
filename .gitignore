@@ -3,8 +3,17 @@ __pycache__/
 .pytest_cache/
 .env
 
+# Streamlit local secrets (use secrets.toml.example; Cloud uses dashboard)
+**/.streamlit/secrets.toml
+
 # Chroma vector store (generated at runtime)
 **/chroma_db/
 
 # Brainstorming visual companion
 .superpowers/
+
+# Editor / local tooling (keep pushes small)
+.cursor/
+.playwright-mcp/
+app/.playwright-mcp/
+.claude/worktrees/

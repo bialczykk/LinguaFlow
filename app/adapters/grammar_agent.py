@@ -15,10 +15,10 @@ _P1_DIR = _REPO_ROOT / "projects" / "01-grammar-correction-agent"
 if str(_P1_DIR) not in sys.path:
     sys.path.insert(0, str(_P1_DIR))
 
-# -- Load environment variables from repo root .env --
-from dotenv import load_dotenv  # noqa: E402
+# -- Load environment (root .env + Streamlit Cloud secrets) --
+from adapters._env import ensure_repo_env  # noqa: E402
 
-load_dotenv(_REPO_ROOT / ".env")
+ensure_repo_env()
 
 # -- Clear cached modules from other projects, then import P1 modules --
 clear_project_modules()
