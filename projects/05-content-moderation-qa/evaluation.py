@@ -41,6 +41,21 @@ _eval_model = ChatAnthropic(model="claude-haiku-4-5-20251001", temperature=0)
 DATASET_NAME = "p5-content-generation-eval"
 
 
+def _parse_json_from_llm(text: str) -> dict:
+    """Parse JSON from LLM response, stripping markdown code fences if present.
+
+    Claude often wraps JSON in ```json ... ``` blocks. This helper
+    strips those before parsing.
+    """
+    cleaned = text.strip()
+    if cleaned.startswith("```"):
+        first_newline = cleaned.index("\n")
+        cleaned = cleaned[first_newline + 1:]
+    if cleaned.endswith("```"):
+        cleaned = cleaned[:-3]
+    return json.loads(cleaned.strip())
+
+
 # -- Custom Evaluators --
 # Each evaluator follows the LangSmith convention:
 #   def evaluator(run, example) -> {"key": str, "score": float, "comment": str}
@@ -63,7 +78,7 @@ def topic_relevance_evaluator(run, example) -> dict:
     )
 
     try:
-        parsed = json.loads(response.content.strip())
+        parsed = _parse_json_from_llm(response.content)
         score = float(parsed.get("score", 0.5))
     except (json.JSONDecodeError, ValueError):
         score = 0.5
@@ -90,7 +105,7 @@ def difficulty_match_evaluator(run, example) -> dict:
     )
 
     try:
-        parsed = json.loads(response.content.strip())
+        parsed = _parse_json_from_llm(response.content)
         score = float(parsed.get("score", 0.5))
     except (json.JSONDecodeError, ValueError):
         score = 0.5
@@ -117,7 +132,7 @@ def content_quality_evaluator(run, example) -> dict:
     )
 
     try:
-        parsed = json.loads(response.content.strip())
+        parsed = _parse_json_from_llm(response.content)
         score = float(parsed.get("score", 0.5))
     except (json.JSONDecodeError, ValueError):
         score = 0.5
