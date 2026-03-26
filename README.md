@@ -42,7 +42,7 @@ pytest
 
 ## Deploying the Streamlit app
 
-See **[`app/README.md`](app/README.md)** — GitHub, **Streamlit Community Cloud** (`app/app.py`, root `requirements.txt`), and **Secrets** (paste TOML in the Cloud dashboard; do not commit real keys).
+See **[`app/README.md`](app/README.md)** — GitHub, **Streamlit Community Cloud** (`app/app.py`, `app/requirements.txt` including the root stack via `-r`), and **Secrets** (paste TOML in the Cloud dashboard; do not commit real keys).
 
 ## Conventions
 

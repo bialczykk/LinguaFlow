@@ -74,6 +74,7 @@ See `app/.streamlit/secrets.toml.example` for a template. Do not commit real `se
 ### 3. Cloud app settings
 
 - **Main file:** `app/app.py`
-- **Python package file:** `requirements.txt` at the **repository root** (includes Streamlit + all tab dependencies)
+- **Dependencies:** If Streamlit Cloud warns about multiple `requirements.txt` files, it usually picks **`app/requirements.txt`** when the main file lives under `app/`. That file includes the full stack via `-r ../requirements.txt` (same as the repo root file), so LangChain and friends are installed.
+- **Python version:** In app settings, prefer **3.12** or **3.11**. Very new runtimes (e.g. 3.14) can break some scientific / ML wheels before they publish builds.
 
 First deploy can take several minutes while `sentence-transformers` / Chroma dependencies install.

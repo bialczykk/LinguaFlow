@@ -1,2 +1,3 @@
-streamlit
-python-dotenv
+# Streamlit Cloud resolves dependencies from this file when the main module is app/app.py.
+# Full stack (LangChain, LangGraph, Chroma, etc.) lives in the repo root — include it here.
+-r ../requirements.txt
