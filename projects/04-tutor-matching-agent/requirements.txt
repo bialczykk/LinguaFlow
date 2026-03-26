@@ -1,0 +1,7 @@
+langchain-core
+langchain-anthropic
+langgraph
+langgraph-checkpoint-sqlite
+langsmith
+python-dotenv
+pytest
