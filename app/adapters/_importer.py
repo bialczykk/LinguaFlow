@@ -12,7 +12,7 @@ import sys
 # Module names that exist in multiple projects and would collide
 _CONFLICTING = {
     "models", "graph", "nodes", "prompts", "chains",
-    "conversation", "intake", "ingestion",
+    "conversation", "intake", "ingestion", "tools", "agents",
 }
 
 
