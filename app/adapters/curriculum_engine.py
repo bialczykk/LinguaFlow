@@ -27,7 +27,6 @@ ensure_repo_env()
 
 # -- CRITICAL: Clear cached modules, then import project modules --
 clear_project_modules()
-from agents import get_shared_store  # noqa: E402
 from graph import build_graph  # noqa: E402
 from data.sample_requests import SAMPLE_REQUESTS  # noqa: E402
 from models import CEFR_LEVELS  # noqa: E402
@@ -37,8 +36,8 @@ from langgraph.checkpoint.memory import InMemorySaver  # noqa: E402
 from langgraph.types import Command  # noqa: E402
 
 _checkpointer = InMemorySaver()
-# DeepAgents with StoreBackend require the same Store on the parent graph runtime.
-_graph = build_graph(checkpointer=_checkpointer, store=get_shared_store())
+# Project graph only wires checkpointer; DeepAgents use the shared store inside agents.py.
+_graph = build_graph(checkpointer=_checkpointer)
 
 # -- Step names for progress tracking --
 STEPS = [
