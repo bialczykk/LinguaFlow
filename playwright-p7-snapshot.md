@@ -1,0 +1,864 @@
+- generic [ref=e3]:
+  - banner [ref=e6]:
+    - generic [ref=e8]:
+      - button "keyboard_double_arrow_right" [ref=e11] [cursor=pointer]:
+        - generic [ref=e13]: keyboard_double_arrow_right
+      - generic [ref=e14]:
+        - button "Deploy" [ref=e24] [cursor=pointer]:
+          - generic [ref=e26]: Deploy
+        - button "Main menu" [ref=e28] [cursor=pointer]:
+          - img [ref=e29]
+  - generic [ref=e32]:
+    - heading "🎓 LinguaFlow Learning Lab" [level=1] [ref=e37]:
+      - text: 🎓 LinguaFlow Learning Lab
+      - generic [ref=e38]:
+        - link "Link to heading":
+          - /url: "#lingua-flow-learning-lab"
+          - img
+    - paragraph [ref=e43]: Interactive interface for LangGraph ecosystem learning projects
+    - generic [ref=e45]:
+      - tablist [ref=e47]:
+        - tab "✏️ Grammar Agent" [ref=e48] [cursor=pointer]:
+          - paragraph [ref=e50]: ✏️ Grammar Agent
+        - tab "📋 Lesson Planner" [ref=e51] [cursor=pointer]:
+          - paragraph [ref=e53]: 📋 Lesson Planner
+        - tab "📊 Assessment Pipeline" [ref=e54] [cursor=pointer]:
+          - paragraph [ref=e56]: 📊 Assessment Pipeline
+        - tab "🤝 Tutor Matching" [ref=e57] [cursor=pointer]:
+          - paragraph [ref=e59]: 🤝 Tutor Matching
+        - tab "🛡️ Content Moderation" [ref=e60] [cursor=pointer]:
+          - paragraph [ref=e62]: 🛡️ Content Moderation
+        - tab "🧠 Curriculum Engine" [selected] [ref=e63] [cursor=pointer]:
+          - paragraph [ref=e65]: 🧠 Curriculum Engine
+      - tabpanel "🧠 Curriculum Engine" [ref=e151]:
+        - generic [ref=e152]:
+          - heading "Intelligent Curriculum Engine" [level=2] [ref=e157]:
+            - text: Intelligent Curriculum Engine
+            - generic [ref=e158]:
+              - link "Link to heading":
+                - /url: "#intelligent-curriculum-engine"
+                - img
+          - paragraph [ref=e163]: DeepAgents-powered curriculum module generator with HITL approval
+          - generic [ref=e165]:
+            - button "Reset" [ref=e170] [cursor=pointer]:
+              - paragraph [ref=e174]: Reset
+            - paragraph [ref=e181]:
+              - text: "Stage:"
+              - strong [ref=e182]: Review Lesson
+          - generic [ref=e381]:
+            - paragraph [ref=e388]:
+              - deletion [ref=e389]: Plan
+            - paragraph [ref=e396]:
+              - deletion [ref=e696]: Review Plan
+            - paragraph [ref=e404]:
+              - deletion [ref=e697]: Lesson
+            - paragraph [ref=e411]:
+              - strong [ref=e698]: Review Lesson
+            - paragraph [ref=e418]: Exercises
+            - paragraph [ref=e425]: Review Exercises
+            - paragraph [ref=e432]: Assessment
+            - paragraph [ref=e439]: Review Assessment
+            - paragraph [ref=e446]: Assemble
+            - paragraph [ref=e453]: Done
+          - separator [ref=e457]
+          - group [ref=e460]:
+            - generic "keyboard_arrow_right Pipeline Log" [ref=e461] [cursor=pointer]:
+              - generic [ref=e462]:
+                - generic [ref=e464]: keyboard_arrow_right
+                - paragraph [ref=e467]: Pipeline Log
+          - heading "Review Lesson" [level=3] [ref=e699]:
+            - text: Review Lesson
+            - generic [ref=e473]:
+              - link "Link to heading":
+                - /url: "#review-curriculum-plan"
+                - img
+          - generic [ref=e476]:
+            - heading "Business English for Meetings - B2" [level=1] [ref=e701]:
+              - text: Business English for Meetings - B2
+              - generic [ref=e702]:
+                - link "Link to heading":
+                  - /url: "#business-english-for-meetings-b2"
+                  - img
+            - paragraph [ref=e703]:
+              - strong [ref=e704]: "Level:"
+              - text: B2 (Upper Intermediate)
+              - strong [ref=e705]: "Duration:"
+              - text: 90 minutes
+              - strong [ref=e706]: "Topic:"
+              - text: Professional Communication in Business Meetings
+            - separator [ref=e707]
+            - heading "Learning Objectives" [level=2] [ref=e709]:
+              - text: Learning Objectives
+              - generic [ref=e710]:
+                - link "Link to heading":
+                  - /url: "#learning-objectives"
+                  - img
+            - paragraph [ref=e711]: "By the end of this lesson, students will be able to:"
+            - list [ref=e712]:
+              - listitem [ref=e713]: Use key meeting vocabulary accurately in context (agenda, action items, stakeholders, consensus)
+              - listitem [ref=e714]: Open and close meetings professionally with appropriate register
+              - listitem [ref=e715]: Express opinions and disagreement diplomatically using hedging language
+              - listitem [ref=e716]: Ask clarifying questions and demonstrate active listening
+              - listitem [ref=e717]: Present ideas and proposals with confidence and clarity
+              - listitem [ref=e718]: Use negotiation language and persuasion techniques effectively
+              - listitem [ref=e719]: Handle interruptions and manage discussion flow appropriately
+              - listitem [ref=e720]: Summarize decisions and assign responsibilities clearly
+            - separator [ref=e721]
+            - heading "Lesson Structure" [level=2] [ref=e723]:
+              - text: Lesson Structure
+              - generic [ref=e724]:
+                - link "Link to heading":
+                  - /url: "#lesson-structure"
+                  - img
+            - 'heading "Part 1: Warm-up & Context Setting (10 minutes)" [level=3] [ref=e725]':
+              - text: "Part 1: Warm-up & Context Setting (10 minutes)"
+              - generic [ref=e479]:
+                - link "Link to heading":
+                  - /url: "#business-english-for-meetings-b2-level"
+                  - img
+            - paragraph [ref=e726]:
+              - strong [ref=e727]: "Objective:"
+              - text: Activate prior knowledge and establish context
+            - paragraph [ref=e728]:
+              - strong [ref=e729]: "Activity 1.1: Discussion Prompt"
+            - list [ref=e730]:
+              - listitem [ref=e731]: "Show image/scenario: A diverse team in a meeting room"
+              - listitem [ref=e732]: "Ask: \"What makes a business meeting successful? What challenges do you face in English meetings?\""
+              - listitem [ref=e733]: Elicit responses; write key vocabulary on board
+            - paragraph [ref=e734]:
+              - strong [ref=e735]: "Activity 1.2: Vocabulary Pre-check"
+              - text: "Present 5 key terms and ask students to match with definitions:"
+            - list [ref=e736]:
+              - listitem [ref=e737]:
+                - strong [ref=e738]: Agenda
+                - text: → a list of items to be discussed
+              - listitem [ref=e739]:
+                - strong [ref=e740]: Action items
+                - text: → tasks assigned to be completed after the meeting
+              - listitem [ref=e741]:
+                - strong [ref=e742]: Stakeholders
+                - text: → people with an interest in the outcome
+              - listitem [ref=e743]:
+                - strong [ref=e744]: Consensus
+                - text: → general agreement among all parties
+              - listitem [ref=e745]:
+                - strong [ref=e746]: Minutes
+                - text: → written record of what was discussed and decided
+            - separator [ref=e747]
+            - 'heading "Part 2: Core Vocabulary & Phrases (20 minutes)" [level=3] [ref=e749]':
+              - text: "Part 2: Core Vocabulary & Phrases (20 minutes)"
+              - generic [ref=e750]:
+                - link "Link to heading":
+                  - /url: "#part-2-core-vocabulary-and-phrases-20-minutes"
+                  - img
+            - paragraph [ref=e751]:
+              - strong [ref=e752]: "Objective:"
+              - text: Build receptive and productive vocabulary for meeting contexts
+            - paragraph [ref=e753]:
+              - strong [ref=e754]: "Activity 2.1: Vocabulary Input - Meeting Phases"
+            - table [ref=e755]:
+              - rowgroup [ref=e756]:
+                - row "Phase Key Phrases Function" [ref=e757]:
+                  - columnheader "Phase" [ref=e758]:
+                    - strong [ref=e759]: Phase
+                  - columnheader "Key Phrases" [ref=e760]:
+                    - strong [ref=e761]: Key Phrases
+                  - columnheader "Function" [ref=e762]:
+                    - strong [ref=e763]: Function
+              - rowgroup [ref=e764]:
+                - row "Opening \"Let's get started.\" / \"I'd like to welcome everyone.\" / \"Shall we begin?\" Establish tone, set expectations" [ref=e765]:
+                  - cell "Opening" [ref=e766]:
+                    - strong [ref=e767]: Opening
+                  - cell "\"Let's get started.\" / \"I'd like to welcome everyone.\" / \"Shall we begin?\"" [ref=e768]
+                  - cell "Establish tone, set expectations" [ref=e769]
+                - row "Presenting Ideas \"I'd like to propose...\" / \"In my view...\" / \"The key point here is...\" Introduce proposals confidently" [ref=e770]:
+                  - cell "Presenting Ideas" [ref=e771]:
+                    - strong [ref=e772]: Presenting Ideas
+                  - cell "\"I'd like to propose...\" / \"In my view...\" / \"The key point here is...\"" [ref=e773]
+                  - cell "Introduce proposals confidently" [ref=e774]
+                - row "Expressing Disagreement \"I see your point, but...\" / \"That's a fair point, however...\" / \"I'm not entirely convinced that...\" Maintain professionalism while disagreeing" [ref=e775]:
+                  - cell "Expressing Disagreement" [ref=e776]:
+                    - strong [ref=e777]: Expressing Disagreement
+                  - cell "\"I see your point, but...\" / \"That's a fair point, however...\" / \"I'm not entirely convinced that...\"" [ref=e778]
+                  - cell "Maintain professionalism while disagreeing" [ref=e779]
+                - row "Asking for Clarification \"Could you elaborate on that?\" / \"What do you mean by...?\" / \"Can you give an example?\" Ensure understanding" [ref=e780]:
+                  - cell "Asking for Clarification" [ref=e781]:
+                    - strong [ref=e782]: Asking for Clarification
+                  - cell "\"Could you elaborate on that?\" / \"What do you mean by...?\" / \"Can you give an example?\"" [ref=e783]
+                  - cell "Ensure understanding" [ref=e784]
+                - row "Reaching Agreement \"I think we're all on the same page.\" / \"Does everyone agree?\" / \"Shall we move forward with this?\" Confirm consensus" [ref=e785]:
+                  - cell "Reaching Agreement" [ref=e786]:
+                    - strong [ref=e787]: Reaching Agreement
+                  - cell "\"I think we're all on the same page.\" / \"Does everyone agree?\" / \"Shall we move forward with this?\"" [ref=e788]
+                  - cell "Confirm consensus" [ref=e789]
+                - row "Closing \"Let me summarize what we've decided...\" / \"To recap...\" / \"Next steps are...\" Ensure clarity on outcomes" [ref=e790]:
+                  - cell "Closing" [ref=e791]:
+                    - strong [ref=e792]: Closing
+                  - cell "\"Let me summarize what we've decided...\" / \"To recap...\" / \"Next steps are...\"" [ref=e793]
+                  - cell "Ensure clarity on outcomes" [ref=e794]
+            - paragraph [ref=e795]:
+              - strong [ref=e796]: "Activity 2.2: Contextual Phrase Bank Exercise"
+            - paragraph [ref=e797]: "Read the following meeting excerpt and identify which phrases are used for each function:"
+            - blockquote [ref=e798]:
+              - paragraph [ref=e799]:
+                - strong [ref=e800]: "Manager:"
+                - text: "\"Let's get started. I'd like to welcome everyone to today's strategy meeting. The agenda is on your screens. First, I'd like to propose we discuss the Q3 budget allocation. Sarah, could you elaborate on the preliminary figures?\""
+              - paragraph [ref=e801]:
+                - strong [ref=e802]: "Sarah:"
+                - text: "\"Of course. In my view, we should prioritize the marketing department. However, I recognize that other departments have needs too.\""
+              - paragraph [ref=e803]:
+                - strong [ref=e804]: "Finance Director:"
+                - text: "\"I see your point, but we need to be realistic about constraints. What do you mean by 'prioritize'—are we talking about a 20% increase?\""
+              - paragraph [ref=e805]:
+                - strong [ref=e806]: "Sarah:"
+                - text: "\"Exactly. I think we're all on the same page now. Shall we move forward with this proposal?\""
+            - paragraph [ref=e807]:
+              - strong [ref=e808]: "Task:"
+              - text: Underline opening phrases, circle disagreement phrases, box clarification phrases.
+            - separator [ref=e809]
+            - 'heading "Part 3: Listening & Comprehension (15 minutes)" [level=3] [ref=e811]':
+              - text: "Part 3: Listening & Comprehension (15 minutes)"
+              - generic [ref=e812]:
+                - link "Link to heading":
+                  - /url: "#part-3-listening-and-comprehension-15-minutes"
+                  - img
+            - paragraph [ref=e813]:
+              - strong [ref=e814]: "Objective:"
+              - text: Develop listening skills in authentic meeting contexts
+            - paragraph [ref=e815]:
+              - strong [ref=e816]: "Activity 3.1: Authentic Meeting Scenario"
+            - paragraph [ref=e817]: "Listen to a 3-minute recorded meeting excerpt (or read transcript if audio unavailable):"
+            - paragraph [ref=e818]:
+              - strong [ref=e819]: "Transcript: Product Launch Meeting"
+            - blockquote [ref=e820]:
+              - paragraph [ref=e821]:
+                - strong [ref=e822]: "Project Lead:"
+                - text: "\"Good morning, everyone. Let's begin. As you know, we're here to finalize the product launch timeline. I'd like to start by reviewing the current schedule. Marketing, could you walk us through your timeline?\""
+              - paragraph [ref=e823]:
+                - strong [ref=e824]: "Marketing Manager:"
+                - text: "\"Certainly. We're proposing a three-phase rollout: soft launch in week one, influencer partnerships in week two, and full campaign in week three.\""
+              - paragraph [ref=e825]:
+                - strong [ref=e826]: "Operations Director:"
+                - text: "\"I appreciate the plan, but I'm not entirely convinced we can meet those deadlines. Our production capacity is limited. What do you mean by 'soft launch'—are we talking limited availability?\""
+              - paragraph [ref=e827]:
+                - strong [ref=e828]: "Marketing Manager:"
+                - text: "\"Good question. Yes, we'd release to a select audience first to gather feedback before the full launch.\""
+              - paragraph [ref=e829]:
+                - strong [ref=e830]: "Project Lead:"
+                - text: "\"That makes sense. So we're looking at a phased approach. Does everyone agree with this timeline, or do we need to adjust?\""
+              - paragraph [ref=e831]:
+                - strong [ref=e832]: "Finance Lead:"
+                - text: "\"I have a concern. The budget allocation assumes week-one readiness, but if we're phasing it, we might reduce initial costs. Can you elaborate on the financial implications?\""
+              - paragraph [ref=e833]:
+                - strong [ref=e834]: "Marketing Manager:"
+                - text: "\"Absolutely. A phased approach actually allows us to allocate budget more strategically. We'd spend less upfront and adjust based on early feedback.\""
+              - paragraph [ref=e835]:
+                - strong [ref=e836]: "Project Lead:"
+                - text: "\"Excellent. I think we're all on the same page. Let me summarize: we're moving forward with a three-phase launch, starting week one with a soft launch. Marketing will provide detailed budget breakdowns by Friday. Operations, you'll confirm production capacity by Thursday. Any final questions?\""
+            - paragraph [ref=e837]:
+              - strong [ref=e838]: "Activity 3.2: Listening Comprehension Task"
+            - paragraph [ref=e839]: "Answer the following questions:"
+            - list [ref=e840]:
+              - listitem [ref=e841]: What are the three phases of the product launch?
+              - listitem [ref=e842]: Why does the Operations Director express concern?
+              - listitem [ref=e843]: How does the Marketing Manager address the budget concern?
+              - listitem [ref=e844]: What are the action items assigned? Who is responsible for each?
+            - paragraph [ref=e845]:
+              - strong [ref=e846]: "Activity 3.3: Note-taking Practice"
+            - paragraph [ref=e847]: "Listen again and complete the meeting minutes template:"
+            - table [ref=e848]:
+              - rowgroup [ref=e849]:
+                - row "Item Details" [ref=e850]:
+                  - columnheader "Item" [ref=e851]:
+                    - strong [ref=e852]: Item
+                  - columnheader "Details" [ref=e853]:
+                    - strong [ref=e854]: Details
+              - rowgroup [ref=e855]:
+                - row "Attendees" [ref=e856]:
+                  - cell "Attendees" [ref=e857]:
+                    - strong [ref=e858]: Attendees
+                  - cell [ref=e859]
+                - row "Agenda" [ref=e860]:
+                  - cell "Agenda" [ref=e861]:
+                    - strong [ref=e862]: Agenda
+                  - cell [ref=e863]
+                - row "Key Decisions" [ref=e864]:
+                  - cell "Key Decisions" [ref=e865]:
+                    - strong [ref=e866]: Key Decisions
+                  - cell [ref=e867]
+                - 'row "Action Items 1. _____ (Owner: _____) (Deadline: _____)" [ref=e868]':
+                  - cell "Action Items" [ref=e869]:
+                    - strong [ref=e870]: Action Items
+                  - 'cell "1. _____ (Owner: _____) (Deadline: _____)" [ref=e871]'
+                - 'row "2. _____ (Owner: _____) (Deadline: _____)" [ref=e872]':
+                  - cell [ref=e873]
+                  - 'cell "2. _____ (Owner: _____) (Deadline: _____)" [ref=e874]'
+                - row "Next Meeting" [ref=e875]:
+                  - cell "Next Meeting" [ref=e876]:
+                    - strong [ref=e877]: Next Meeting
+                  - cell [ref=e878]
+            - separator [ref=e879]
+            - 'heading "Part 4: Speaking & Interaction (30 minutes)" [level=3] [ref=e881]':
+              - text: "Part 4: Speaking & Interaction (30 minutes)"
+              - generic [ref=e882]:
+                - link "Link to heading":
+                  - /url: "#part-4-speaking-and-interaction-30-minutes"
+                  - img
+            - paragraph [ref=e883]:
+              - strong [ref=e884]: "Objective:"
+              - text: Develop productive speaking skills through structured practice
+            - paragraph [ref=e885]:
+              - strong [ref=e886]: "Activity 4.1: Phrase Bank Role-play - Diplomatic Disagreement"
+            - paragraph [ref=e887]:
+              - strong [ref=e888]: "Scenario:"
+              - text: Budget allocation meeting
+            - paragraph [ref=e889]:
+              - strong [ref=e890]: "Student A (Finance Manager):"
+              - text: You believe the IT department's budget request is too high.
+              - strong [ref=e891]: "Student B (IT Director):"
+              - text: You need the budget for essential infrastructure upgrades.
+            - paragraph [ref=e892]:
+              - strong [ref=e893]: "Sentence Starters (use at least 3):"
+            - list [ref=e894]:
+              - listitem [ref=e895]: "\"I see your point, but...\""
+              - listitem [ref=e896]: "\"That's a fair point, however...\""
+              - listitem [ref=e897]: "\"I appreciate your perspective, yet...\""
+              - listitem [ref=e898]: "\"I understand your concern, though...\""
+            - paragraph [ref=e899]:
+              - strong [ref=e900]: "Dialogue Example:"
+            - blockquote [ref=e901]:
+              - paragraph [ref=e902]:
+                - strong [ref=e903]: "A:"
+                - text: "\"I see your point about infrastructure needs, but we need to consider other departments' priorities too.\""
+              - paragraph [ref=e904]:
+                - strong [ref=e905]: "B:"
+                - text: "\"That's fair. However, without these upgrades, our system reliability is at risk. Can you elaborate on what other priorities you're considering?\""
+            - paragraph [ref=e906]:
+              - strong [ref=e907]: "Activity 4.2: Structured Presentation Task (1-2 minutes)"
+            - paragraph [ref=e908]:
+              - strong [ref=e909]: "Prompt:"
+              - text: "You are presenting a proposal to your team. Choose one:"
+            - list [ref=e910]:
+              - listitem [ref=e911]: A new remote work policy
+              - listitem [ref=e912]: An investment in professional development
+              - listitem [ref=e913]: A change to the product line
+            - paragraph [ref=e914]:
+              - strong [ref=e915]: "Requirements:"
+            - list [ref=e916]:
+              - listitem [ref=e917]: Open with "I'd like to propose..."
+              - listitem [ref=e918]: Present 2-3 key points
+              - listitem [ref=e919]: "Use at least one phrase to invite questions: \"Any questions?\" / \"What do you think?\""
+              - listitem [ref=e920]: Close with next steps
+            - paragraph [ref=e921]:
+              - strong [ref=e922]: "Peer Feedback:"
+              - text: "Listeners note:"
+            - list [ref=e923]:
+              - listitem [ref=e924]: Did the speaker use professional opening/closing?
+              - listitem [ref=e925]: Were ideas presented clearly?
+              - listitem [ref=e926]: Was the register appropriate?
+            - paragraph [ref=e927]:
+              - strong [ref=e928]: "Activity 4.3: Interactive Discussion Simulation"
+            - paragraph [ref=e929]:
+              - strong [ref=e930]: "Scenario:"
+              - text: Team Meeting - Remote Work Policy Decision
+            - paragraph [ref=e931]:
+              - strong [ref=e932]: "Roles:"
+            - list [ref=e933]:
+              - listitem [ref=e934]:
+                - strong [ref=e935]: "Facilitator:"
+                - text: Keeps discussion on track, invites input, summarizes
+              - listitem [ref=e936]:
+                - strong [ref=e937]: "Advocate for Remote Work:"
+                - text: Emphasizes flexibility and productivity benefits
+              - listitem [ref=e938]:
+                - strong [ref=e939]: "Advocate for Office-Based Work:"
+                - text: Emphasizes collaboration and company culture
+              - listitem [ref=e940]:
+                - strong [ref=e941]: "HR Representative:"
+                - text: Addresses policy implications and logistics
+            - paragraph [ref=e942]:
+              - strong [ref=e943]: "Discussion Flow:"
+            - list [ref=e944]:
+              - listitem [ref=e945]:
+                - strong [ref=e946]: "Facilitator opens:"
+                - text: "\"Let's discuss our remote work policy. I'd like to hear perspectives from everyone.\""
+              - listitem [ref=e947]:
+                - strong [ref=e948]: Each role presents
+                - text: their position (1 minute each)
+              - listitem [ref=e949]:
+                - strong [ref=e950]: "Open discussion:"
+                - text: "Use phrases to:"
+                - list [ref=e951]:
+                  - listitem [ref=e952]: "Agree: \"I agree with that point.\" / \"That's a valid concern.\""
+                  - listitem [ref=e953]: "Disagree diplomatically: \"I see your point, but...\" / \"I'm not entirely convinced...\""
+                  - listitem [ref=e954]: "Ask for clarification: \"Could you elaborate?\" / \"What do you mean by...?\""
+              - listitem [ref=e955]:
+                - strong [ref=e956]: "Facilitator summarizes:"
+                - text: "\"So we've identified three key areas: flexibility, collaboration, and logistics. Shall we move forward with a hybrid model?\""
+            - paragraph [ref=e957]:
+              - strong [ref=e958]: "Language Focus During Activity:"
+            - list [ref=e959]:
+              - listitem [ref=e960]: "Handling interruptions: \"If I could finish my point...\" / \"Let me come back to that...\""
+              - listitem [ref=e961]: "Managing discussion: \"Let's table that for now.\" / \"That's a good point for another discussion.\""
+              - listitem [ref=e962]: "Building consensus: \"Does everyone agree?\" / \"Are we all comfortable with this direction?\""
+            - separator [ref=e963]
+            - 'heading "Part 5: Consolidation & Summary (10 minutes)" [level=3] [ref=e965]':
+              - text: "Part 5: Consolidation & Summary (10 minutes)"
+              - generic [ref=e966]:
+                - link "Link to heading":
+                  - /url: "#part-5-consolidation-and-summary-10-minutes"
+                  - img
+            - paragraph [ref=e967]:
+              - strong [ref=e968]: "Objective:"
+              - text: Reinforce learning and plan application
+            - paragraph [ref=e969]:
+              - strong [ref=e970]: "Activity 5.1: Phrase Bank Review"
+            - paragraph [ref=e971]: "Create a personal reference sheet with 10 essential phrases for your most challenging meeting situations:"
+            - table [ref=e972]:
+              - rowgroup [ref=e973]:
+                - row "Situation Phrase" [ref=e974]:
+                  - columnheader "Situation" [ref=e975]:
+                    - strong [ref=e976]: Situation
+                  - columnheader "Phrase" [ref=e977]:
+                    - strong [ref=e978]: Phrase
+              - rowgroup [ref=e979]:
+                - row "Opening a meeting" [ref=e980]:
+                  - cell "Opening a meeting" [ref=e981]
+                  - cell [ref=e982]
+                - row "Presenting an idea" [ref=e983]:
+                  - cell "Presenting an idea" [ref=e984]
+                  - cell [ref=e985]
+                - row "Disagreeing diplomatically" [ref=e986]:
+                  - cell "Disagreeing diplomatically" [ref=e987]
+                  - cell [ref=e988]
+                - row "Asking for clarification" [ref=e989]:
+                  - cell "Asking for clarification" [ref=e990]
+                  - cell [ref=e991]
+                - row "Reaching agreement" [ref=e992]:
+                  - cell "Reaching agreement" [ref=e993]
+                  - cell [ref=e994]
+                - row "Closing a meeting" [ref=e995]:
+                  - cell "Closing a meeting" [ref=e996]
+                  - cell [ref=e997]
+            - paragraph [ref=e998]:
+              - strong [ref=e999]: "Activity 5.2: Self-assessment Checklist"
+            - paragraph [ref=e1000]: "Rate yourself (1-5, where 5 = confident):"
+            - list [ref=e1001]:
+              - listitem [ref=e1002]:
+                - checkbox [disabled] [ref=e1003]
+                - text: I can use meeting vocabulary accurately
+              - listitem [ref=e1004]:
+                - checkbox [disabled] [ref=e1005]
+                - text: I can open and close meetings professionally
+              - listitem [ref=e1006]:
+                - checkbox [disabled] [ref=e1007]
+                - text: I can express disagreement diplomatically
+              - listitem [ref=e1008]:
+                - checkbox [disabled] [ref=e1009]
+                - text: I can ask clarifying questions effectively
+              - listitem [ref=e1010]:
+                - checkbox [disabled] [ref=e1011]
+                - text: I can present ideas with confidence
+              - listitem [ref=e1012]:
+                - checkbox [disabled] [ref=e1013]
+                - text: I can manage discussion flow
+              - listitem [ref=e1014]:
+                - checkbox [disabled] [ref=e1015]
+                - text: I can summarize decisions clearly
+            - paragraph [ref=e1016]:
+              - strong [ref=e1017]: "Activity 5.3: Action Planning"
+            - paragraph [ref=e1018]: "Identify one real meeting situation you'll face this week. Write:"
+            - list [ref=e1019]:
+              - listitem [ref=e1020]:
+                - strong [ref=e1021]: "Situation:"
+                - text: _______________
+              - listitem [ref=e1022]:
+                - strong [ref=e1023]: "Key phrases I'll use:"
+                - text: _______________
+              - listitem [ref=e1024]:
+                - strong [ref=e1025]: "Potential challenges:"
+                - text: _______________
+              - listitem [ref=e1026]:
+                - strong [ref=e1027]: "How I'll prepare:"
+                - text: _______________
+            - separator [ref=e1028]
+            - heading "Assessment" [level=2] [ref=e1030]:
+              - text: Assessment
+              - generic [ref=e1031]:
+                - link "Link to heading":
+                  - /url: "#assessment"
+                  - img
+            - heading "Formative Assessment (During Lesson)" [level=3] [ref=e1033]:
+              - text: Formative Assessment (During Lesson)
+              - generic [ref=e1034]:
+                - link "Link to heading":
+                  - /url: "#formative-assessment-during-lesson"
+                  - img
+            - paragraph [ref=e1035]:
+              - strong [ref=e1036]: "Observation Rubric for Speaking Activities:"
+            - table [ref=e1037]:
+              - rowgroup [ref=e1038]:
+                - row "Criterion Developing Proficient Advanced" [ref=e1039]:
+                  - columnheader "Criterion" [ref=e1040]:
+                    - strong [ref=e1041]: Criterion
+                  - columnheader "Developing" [ref=e1042]:
+                    - strong [ref=e1043]: Developing
+                  - columnheader "Proficient" [ref=e1044]:
+                    - strong [ref=e1045]: Proficient
+                  - columnheader "Advanced" [ref=e1046]:
+                    - strong [ref=e1047]: Advanced
+              - rowgroup [ref=e1048]:
+                - row "Vocabulary Use Uses basic meeting terms; occasional errors Uses key meeting vocabulary accurately Uses vocabulary with precision and variety" [ref=e1049]:
+                  - cell "Vocabulary Use" [ref=e1050]:
+                    - strong [ref=e1051]: Vocabulary Use
+                  - cell "Uses basic meeting terms; occasional errors" [ref=e1052]
+                  - cell "Uses key meeting vocabulary accurately" [ref=e1053]
+                  - cell "Uses vocabulary with precision and variety" [ref=e1054]
+                - row "Fluency Hesitant; frequent pauses Speaks with reasonable fluency Speaks naturally with minimal hesitation" [ref=e1055]:
+                  - cell "Fluency" [ref=e1056]:
+                    - strong [ref=e1057]: Fluency
+                  - cell "Hesitant; frequent pauses" [ref=e1058]
+                  - cell "Speaks with reasonable fluency" [ref=e1059]
+                  - cell "Speaks naturally with minimal hesitation" [ref=e1060]
+                - row "Diplomacy Direct or blunt; may offend Uses hedging language appropriately Skillfully balances directness with diplomacy" [ref=e1061]:
+                  - cell "Diplomacy" [ref=e1062]:
+                    - strong [ref=e1063]: Diplomacy
+                  - cell "Direct or blunt; may offend" [ref=e1064]
+                  - cell "Uses hedging language appropriately" [ref=e1065]
+                  - cell "Skillfully balances directness with diplomacy" [ref=e1066]
+                - row "Listening Misses key points Understands main ideas Catches nuances and implications" [ref=e1067]:
+                  - cell "Listening" [ref=e1068]:
+                    - strong [ref=e1069]: Listening
+                  - cell "Misses key points" [ref=e1070]
+                  - cell "Understands main ideas" [ref=e1071]
+                  - cell "Catches nuances and implications" [ref=e1072]
+                - row "Register Inconsistent formality Maintains professional register Adapts register to context" [ref=e1073]:
+                  - cell "Register" [ref=e1074]:
+                    - strong [ref=e1075]: Register
+                  - cell "Inconsistent formality" [ref=e1076]
+                  - cell "Maintains professional register" [ref=e1077]
+                  - cell "Adapts register to context" [ref=e1078]
+            - heading "Summative Assessment (Post-Lesson)" [level=3] [ref=e1080]:
+              - text: Summative Assessment (Post-Lesson)
+              - generic [ref=e1081]:
+                - link "Link to heading":
+                  - /url: "#summative-assessment-post-lesson"
+                  - img
+            - paragraph [ref=e1082]:
+              - strong [ref=e1083]: "Mock Meeting Task:"
+              - text: "Students participate in a 10-15 minute recorded meeting where they:"
+            - list [ref=e1084]:
+              - listitem [ref=e1085]: Present a proposal (2 minutes)
+              - listitem [ref=e1086]: Respond to questions and disagreement (3 minutes)
+              - listitem [ref=e1087]: Facilitate consensus-building (3 minutes)
+              - listitem [ref=e1088]: Summarize decisions and assign action items (2 minutes)
+            - paragraph [ref=e1089]:
+              - strong [ref=e1090]: "Evaluation Criteria:"
+            - list [ref=e1091]:
+              - listitem [ref=e1092]: Accurate use of meeting vocabulary and phrases
+              - listitem [ref=e1093]: Ability to express and handle disagreement diplomatically
+              - listitem [ref=e1094]: Clarity of communication and idea presentation
+              - listitem [ref=e1095]: Active listening and appropriate responses
+              - listitem [ref=e1096]: Professional register and tone throughout
+            - heading "Peer & Self-Assessment" [level=3] [ref=e1098]:
+              - text: Peer & Self-Assessment
+              - generic [ref=e1099]:
+                - link "Link to heading":
+                  - /url: "#peer-and-self-assessment"
+                  - img
+            - paragraph [ref=e1100]: "Students provide feedback on:"
+            - list [ref=e1101]:
+              - listitem [ref=e1102]: Clarity of ideas presented
+              - listitem [ref=e1103]: Effectiveness of diplomatic language
+              - listitem [ref=e1104]: Helpfulness of clarifying questions
+              - listitem [ref=e1105]: Overall professionalism
+            - separator [ref=e1106]
+            - heading "Homework & Extension" [level=2] [ref=e1108]:
+              - text: Homework & Extension
+              - generic [ref=e1109]:
+                - link "Link to heading":
+                  - /url: "#homework-and-extension"
+                  - img
+            - paragraph [ref=e1110]:
+              - strong [ref=e1111]: "Option 1: Vocabulary Consolidation"
+            - list [ref=e1112]:
+              - listitem [ref=e1113]: Create flashcards for 15 key phrases
+              - listitem [ref=e1114]: Record yourself using each phrase in a sentence
+              - listitem [ref=e1115]: Review daily for one week
+            - paragraph [ref=e1116]:
+              - strong [ref=e1117]: "Option 2: Authentic Practice"
+            - list [ref=e1118]:
+              - listitem [ref=e1119]: Watch a 5-10 minute TED talk or business meeting video
+              - listitem [ref=e1120]: Note key phrases used by speakers
+              - listitem [ref=e1121]: Identify which phrases you could use in your own meetings
+            - paragraph [ref=e1122]:
+              - strong [ref=e1123]: "Option 3: Real-world Application"
+            - list [ref=e1124]:
+              - listitem [ref=e1125]:
+                - text: "Attend a meeting (work, school, or online) and note:"
+                - list [ref=e1126]:
+                  - listitem [ref=e1127]: Which phrases from the lesson were used?
+                  - listitem [ref=e1128]: Which phrases would have been helpful?
+                  - listitem [ref=e1129]: What additional language would you like to learn?
+            - paragraph [ref=e1130]:
+              - strong [ref=e1131]: "Option 4: Peer Practice"
+            - list [ref=e1132]:
+              - listitem [ref=e1133]: Schedule a 15-minute conversation with a language partner
+              - listitem [ref=e1134]: Conduct a mock meeting on a topic of mutual interest
+              - listitem [ref=e1135]: Record and self-assess using the rubric
+            - separator [ref=e1136]
+            - heading "Key Takeaways" [level=2] [ref=e1138]:
+              - text: Key Takeaways
+              - generic [ref=e1139]:
+                - link "Link to heading":
+                  - /url: "#key-takeaways"
+                  - img
+            - list [ref=e1140]:
+              - listitem [ref=e1141]:
+                - strong [ref=e1142]: Professional meetings require specific vocabulary and phrases
+                - text: that signal competence and respect.
+              - listitem [ref=e1143]:
+                - strong [ref=e1144]: Diplomatic language is essential
+                - text: for expressing disagreement without damaging relationships.
+              - listitem [ref=e1145]:
+                - strong [ref=e1146]: Active listening and clarifying questions
+                - text: ensure shared understanding and better decisions.
+              - listitem [ref=e1147]:
+                - strong [ref=e1148]: Clear summaries and action items
+                - text: prevent misunderstandings and ensure accountability.
+              - listitem [ref=e1149]:
+                - strong [ref=e1150]: Consistent practice in realistic scenarios
+                - text: builds confidence and fluency.
+            - separator [ref=e1151]
+            - 'heading "Appendix: Complete Phrase Bank" [level=2] [ref=e1153]':
+              - text: "Appendix: Complete Phrase Bank"
+              - generic [ref=e1154]:
+                - link "Link to heading":
+                  - /url: "#appendix-complete-phrase-bank"
+                  - img
+            - heading "Opening Meetings" [level=3] [ref=e1156]:
+              - text: Opening Meetings
+              - generic [ref=e1157]:
+                - link "Link to heading":
+                  - /url: "#opening-meetings"
+                  - img
+            - list [ref=e1158]:
+              - listitem [ref=e1159]: "\"Let's get started.\""
+              - listitem [ref=e1160]: "\"I'd like to welcome everyone.\""
+              - listitem [ref=e1161]: "\"Shall we begin?\""
+              - listitem [ref=e1162]: "\"Thank you all for coming.\""
+              - listitem [ref=e1163]: "\"Let me start by outlining today's agenda.\""
+            - heading "Presenting Ideas" [level=3] [ref=e1165]:
+              - text: Presenting Ideas
+              - generic [ref=e1166]:
+                - link "Link to heading":
+                  - /url: "#presenting-ideas"
+                  - img
+            - list [ref=e1167]:
+              - listitem [ref=e1168]: "\"I'd like to propose...\""
+              - listitem [ref=e1169]: "\"In my view...\""
+              - listitem [ref=e1170]: "\"The key point here is...\""
+              - listitem [ref=e1171]: "\"I believe we should...\""
+              - listitem [ref=e1172]: "\"My recommendation is...\""
+            - heading "Expressing Disagreement Diplomatically" [level=3] [ref=e1174]:
+              - text: Expressing Disagreement Diplomatically
+              - generic [ref=e1175]:
+                - link "Link to heading":
+                  - /url: "#expressing-disagreement-diplomatically"
+                  - img
+            - list [ref=e1176]:
+              - listitem [ref=e1177]: "\"I see your point, but...\""
+              - listitem [ref=e1178]: "\"That's a fair point, however...\""
+              - listitem [ref=e1179]: "\"I appreciate your perspective, yet...\""
+              - listitem [ref=e1180]: "\"I understand your concern, though...\""
+              - listitem [ref=e1181]: "\"I'm not entirely convinced that...\""
+              - listitem [ref=e1182]: "\"While I understand that, I think...\""
+            - heading "Asking for Clarification" [level=3] [ref=e1184]:
+              - text: Asking for Clarification
+              - generic [ref=e1185]:
+                - link "Link to heading":
+                  - /url: "#asking-for-clarification"
+                  - img
+            - list [ref=e1186]:
+              - listitem [ref=e1187]: "\"Could you elaborate on that?\""
+              - listitem [ref=e1188]: "\"What do you mean by...?\""
+              - listitem [ref=e1189]: "\"Can you give an example?\""
+              - listitem [ref=e1190]: "\"Could you walk us through that?\""
+              - listitem [ref=e1191]: "\"I'm not sure I follow. Could you explain further?\""
+            - heading "Reaching Agreement" [level=3] [ref=e1193]:
+              - text: Reaching Agreement
+              - generic [ref=e1194]:
+                - link "Link to heading":
+                  - /url: "#reaching-agreement"
+                  - img
+            - list [ref=e1195]:
+              - listitem [ref=e1196]: "\"I think we're all on the same page.\""
+              - listitem [ref=e1197]: "\"Does everyone agree?\""
+              - listitem [ref=e1198]: "\"Shall we move forward with this?\""
+              - listitem [ref=e1199]: "\"Are we all comfortable with this direction?\""
+              - listitem [ref=e1200]: "\"So we've reached a consensus on...\""
+            - heading "Handling Interruptions" [level=3] [ref=e1202]:
+              - text: Handling Interruptions
+              - generic [ref=e1203]:
+                - link "Link to heading":
+                  - /url: "#handling-interruptions"
+                  - img
+            - list [ref=e1204]:
+              - listitem [ref=e1205]: "\"If I could finish my point...\""
+              - listitem [ref=e1206]: "\"Let me come back to that...\""
+              - listitem [ref=e1207]: "\"I'll address that in a moment.\""
+              - listitem [ref=e1208]: "\"That's a good point, but let me finish first.\""
+            - heading "Managing Discussion Flow" [level=3] [ref=e1210]:
+              - text: Managing Discussion Flow
+              - generic [ref=e1211]:
+                - link "Link to heading":
+                  - /url: "#managing-discussion-flow"
+                  - img
+            - list [ref=e1212]:
+              - listitem [ref=e1213]: "\"Let's table that for now.\""
+              - listitem [ref=e1214]: "\"That's a good point for another discussion.\""
+              - listitem [ref=e1215]: "\"Let's stay focused on the agenda.\""
+              - listitem [ref=e1216]: "\"We're running short on time, so...\""
+            - heading "Closing Meetings" [level=3] [ref=e1218]:
+              - text: Closing Meetings
+              - generic [ref=e1219]:
+                - link "Link to heading":
+                  - /url: "#closing-meetings"
+                  - img
+            - list [ref=e1220]:
+              - listitem [ref=e1221]: "\"Let me summarize what we've decided...\""
+              - listitem [ref=e1222]: "\"To recap...\""
+              - listitem [ref=e1223]: "\"Next steps are...\""
+              - listitem [ref=e1224]: "\"So, to confirm...\""
+              - listitem [ref=e1225]: "\"Thank you all for your input.\""
+            - separator [ref=e1226]
+            - heading "Notes for Instructors" [level=2] [ref=e1228]:
+              - text: Notes for Instructors
+              - generic [ref=e1229]:
+                - link "Link to heading":
+                  - /url: "#notes-for-instructors"
+                  - img
+            - heading "Differentiation Strategies" [level=3] [ref=e1231]:
+              - text: Differentiation Strategies
+              - generic [ref=e1232]:
+                - link "Link to heading":
+                  - /url: "#differentiation-strategies"
+                  - img
+            - paragraph [ref=e1233]:
+              - strong [ref=e1234]: "For Struggling Learners:"
+            - list [ref=e1235]:
+              - listitem [ref=e1236]: Provide phrase bank cards during speaking activities
+              - listitem [ref=e1237]: Pair with stronger speakers for role-plays
+              - listitem [ref=e1238]: Offer sentence frames for presentations
+              - listitem [ref=e1239]: Pre-teach vocabulary before activities
+            - paragraph [ref=e1240]:
+              - strong [ref=e1241]: "For Advanced Learners:"
+            - list [ref=e1242]:
+              - listitem [ref=e1243]: Encourage use of more sophisticated hedging language ("It could be argued that...", "One might contend...")
+              - listitem [ref=e1244]: Have them facilitate discussions and provide peer feedback
+              - listitem [ref=e1245]: Assign them to analyze authentic meeting recordings for language patterns
+              - listitem [ref=e1246]: Challenge them to lead the mock meeting
+            - heading "Cultural Considerations" [level=3] [ref=e1248]:
+              - text: Cultural Considerations
+              - generic [ref=e1249]:
+                - link "Link to heading":
+                  - /url: "#cultural-considerations"
+                  - img
+            - list [ref=e1250]:
+              - listitem [ref=e1251]: Acknowledge that directness vs. indirectness varies by culture
+              - listitem [ref=e1252]: Discuss how to adapt communication style for international teams
+              - listitem [ref=e1253]: Highlight that diplomatic language is valued in most business contexts
+              - listitem [ref=e1254]: Encourage students to reflect on their own communication norms
+            - heading "Technology Integration" [level=3] [ref=e1256]:
+              - text: Technology Integration
+              - generic [ref=e1257]:
+                - link "Link to heading":
+                  - /url: "#technology-integration"
+                  - img
+            - list [ref=e1258]:
+              - listitem [ref=e1259]: Use video conferencing for remote role-plays
+              - listitem [ref=e1260]: Record speaking activities for self-assessment
+              - listitem [ref=e1261]: Share authentic meeting videos (TED talks, company presentations)
+              - listitem [ref=e1262]: Use discussion forums for asynchronous peer feedback
+            - heading "Scaffolding Principles Applied" [level=3] [ref=e1264]:
+              - text: Scaffolding Principles Applied
+              - generic [ref=e1265]:
+                - link "Link to heading":
+                  - /url: "#scaffolding-principles-applied"
+                  - img
+            - list [ref=e1266]:
+              - listitem [ref=e1267]:
+                - strong [ref=e1268]: "Vocabulary before production:"
+                - text: Phrase bank introduced before speaking tasks
+              - listitem [ref=e1269]:
+                - strong [ref=e1270]: "Guided practice before independent practice:"
+                - text: Structured role-plays before free discussion
+              - listitem [ref=e1271]:
+                - strong [ref=e1272]: "Peer support:"
+                - text: Pair and group work before individual presentations
+              - listitem [ref=e1273]:
+                - strong [ref=e1274]: "Clear models:"
+                - text: Transcripts and examples provided before students produce language
+              - listitem [ref=e1275]:
+                - strong [ref=e1276]: "Feedback loops:"
+                - text: Peer feedback, self-assessment, and instructor observation throughout
+            - separator [ref=e1277]
+            - heading "CEFR Alignment (B2 Level)" [level=2] [ref=e1279]:
+              - text: CEFR Alignment (B2 Level)
+              - generic [ref=e1280]:
+                - link "Link to heading":
+                  - /url: "#cefr-alignment-b2-level"
+                  - img
+            - paragraph [ref=e1281]: "This lesson addresses B2 descriptors:"
+            - list [ref=e1282]:
+              - listitem [ref=e1283]:
+                - strong [ref=e1284]: "Speaking:"
+                - text: Can express ideas and opinions with clarity and precision; can argue a case; can handle disagreement tactfully
+              - listitem [ref=e1285]:
+                - strong [ref=e1286]: "Listening:"
+                - text: Can understand extended speech and lectures; can follow complex arguments
+              - listitem [ref=e1287]:
+                - strong [ref=e1288]: "Interaction:"
+                - text: Can participate actively in discussion; can initiate, maintain, and close conversations appropriately
+              - listitem [ref=e1289]:
+                - strong [ref=e1290]: "Vocabulary:"
+                - text: Can use a wide range of vocabulary; can use less common words appropriately
+              - listitem [ref=e1291]:
+                - strong [ref=e1292]: "Grammar:"
+                - text: Can use a variety of structures; can use complex sentences for emphasis and clarity
+            - separator [ref=e1293]
+            - paragraph [ref=e1294]:
+              - strong [ref=e1295]: "Lesson Created:"
+              - text: "[Date]"
+              - strong [ref=e1296]: "Target Audience:"
+              - text: B2 (Upper Intermediate) Business English Learners
+              - strong [ref=e1297]: "Estimated Completion Time:"
+              - text: 90 minutes + homework
+          - group [ref=e1300]:
+            - generic "keyboard_arrow_right Agent Planning (TodoList)" [ref=e1301] [cursor=pointer]:
+              - generic [ref=e1302]:
+                - generic [ref=e1304]: keyboard_arrow_right
+                - paragraph [ref=e1307]: Agent Planning (TodoList)
+          - separator [ref=e1312]
+          - paragraph [ref=e560]:
+            - strong [ref=e561]: "Moderator Decision:"
+          - generic [ref=e1314]:
+            - paragraph [ref=e1318]: Action
+            - radiogroup "Action" [ref=e1319] [cursor=pointer]:
+              - generic [ref=e1320]:
+                - radio "Approve" [checked]
+                - paragraph [ref=e1325]: Approve
+              - generic [ref=e1326]:
+                - radio "Request Revision"
+                - paragraph [ref=e1331]: Request Revision
+              - generic [ref=e1332]:
+                - radio "Reject (skip this artifact)"
+                - paragraph [ref=e1337]: Reject (skip this artifact)
+          - button "Submit Decision" [ref=e1340] [cursor=pointer]:
+            - paragraph [ref=e1344]: Submit Decision
+          - separator [ref=e1345]
+          - group [ref=e1348]:
+            - 'generic "keyboard_arrow_right 📚 Documentation: DeepAgents & Autonomous Agents" [ref=e1349] [cursor=pointer]':
+              - generic [ref=e1350]:
+                - generic [ref=e1352]: keyboard_arrow_right
+                - paragraph [ref=e1355]: "📚 Documentation: DeepAgents & Autonomous Agents"
