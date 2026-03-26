@@ -1,0 +1,88 @@
+"""Mock invoice data for the billing department.
+
+Provides sample invoices with various statuses. Student IDs and lesson IDs
+are consistent with other data modules to enable cross-department scenarios.
+"""
+
+INVOICES = [
+    {
+        "invoice_id": "INV-001",
+        "student_id": "S001",
+        "amount": 45.00,
+        "currency": "USD",
+        "status": "paid",
+        "lesson_id": "L001",
+        "date": "2026-03-20",
+        "description": "1-hour grammar lesson with Alice Smith",
+    },
+    {
+        "invoice_id": "INV-002",
+        "student_id": "S001",
+        "amount": 45.00,
+        "currency": "USD",
+        "status": "paid",
+        "lesson_id": "L002",
+        "date": "2026-03-22",
+        "description": "1-hour conversation practice with Bob Chen",
+    },
+    {
+        "invoice_id": "INV-003",
+        "student_id": "S002",
+        "amount": 60.00,
+        "currency": "USD",
+        "status": "pending",
+        "lesson_id": "L003",
+        "date": "2026-03-25",
+        "description": "1-hour business English with Carol Davis",
+    },
+    {
+        "invoice_id": "INV-004",
+        "student_id": "S002",
+        "amount": 45.00,
+        "currency": "USD",
+        "status": "refunded",
+        "lesson_id": "L004",
+        "date": "2026-03-18",
+        "description": "Cancelled grammar lesson — full refund issued",
+    },
+    {
+        "invoice_id": "INV-005",
+        "student_id": "S003",
+        "amount": 45.00,
+        "currency": "USD",
+        "status": "disputed",
+        "lesson_id": "L005",
+        "date": "2026-03-23",
+        "description": "1-hour exam prep — student reports duplicate charge",
+    },
+    {
+        "invoice_id": "INV-006",
+        "student_id": "S003",
+        "amount": 45.00,
+        "currency": "USD",
+        "status": "paid",
+        "lesson_id": "L005",
+        "date": "2026-03-23",
+        "description": "1-hour exam prep — duplicate charge (same lesson)",
+    },
+    {
+        "invoice_id": "INV-007",
+        "student_id": "S004",
+        "amount": 60.00,
+        "currency": "USD",
+        "status": "paid",
+        "lesson_id": "L006",
+        "date": "2026-03-21",
+        "description": "1-hour IELTS prep with Eve Foster",
+    },
+    {
+        "invoice_id": "INV-008",
+        "student_id": "S005",
+        "amount": 45.00,
+        "currency": "USD",
+        "status": "pending",
+        "lesson_id": "L007",
+        "date": "2026-03-26",
+        "description": "1-hour vocabulary building with Frank Garcia",
+    },
+]
