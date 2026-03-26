@@ -24,5 +24,5 @@ def clear_project_modules() -> None:
     cache doesn't break previously loaded adapters.
     """
     for name in list(sys.modules):
-        if name in _CONFLICTING or name.startswith("data."):
+        if name in _CONFLICTING or name == "data" or name.startswith("data."):
             del sys.modules[name]
