@@ -7,6 +7,8 @@ and wraps project functions with error handling.
 import sys
 from pathlib import Path
 
+from adapters._importer import clear_project_modules
+
 # -- Path setup --
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _P3_DIR = _REPO_ROOT / "projects" / "03-student-assessment-pipeline"
@@ -18,7 +20,8 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(_REPO_ROOT / ".env")
 
-# -- Import project modules --
+# -- Clear cached modules from other projects, then import P3 modules --
+clear_project_modules()
 from ingestion import build_vector_store, get_vector_store, DEFAULT_PERSIST_DIR  # noqa: E402
 from graph import build_graph  # noqa: E402
 from models import Assessment  # noqa: E402

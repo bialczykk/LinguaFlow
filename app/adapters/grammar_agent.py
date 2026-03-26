@@ -7,6 +7,8 @@ with error handling for use in the Streamlit app.
 import sys
 from pathlib import Path
 
+from adapters._importer import clear_project_modules
+
 # -- Path setup: add P1 project directory to sys.path so its modules can be imported --
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 _P1_DIR = _REPO_ROOT / "projects" / "01-grammar-correction-agent"
@@ -18,7 +20,8 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(_REPO_ROOT / ".env")
 
-# -- Import project modules (after path setup) --
+# -- Clear cached modules from other projects, then import P1 modules --
+clear_project_modules()
 from chains import analyze_grammar  # noqa: E402
 from conversation import ConversationHandler  # noqa: E402
 from data.sample_texts import SAMPLE_TEXTS  # noqa: E402
