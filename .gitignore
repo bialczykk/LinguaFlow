@@ -5,3 +5,6 @@ __pycache__/
 
 # Chroma vector store (generated at runtime)
 **/chroma_db/
+
+# Brainstorming visual companion
+.superpowers/
