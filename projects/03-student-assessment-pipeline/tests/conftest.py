@@ -8,6 +8,14 @@ import pytest
 from ingestion import build_vector_store
 
 
+def pytest_configure(config):
+    """Register custom pytest markers to avoid PytestUnknownMarkWarning."""
+    config.addinivalue_line(
+        "markers",
+        "integration: marks tests that hit real external services (LLM, vector store)",
+    )
+
+
 @pytest.fixture(scope="session")
 def vector_store(tmp_path_factory):
     """Build a Chroma vector store in a temp directory for the test session.
