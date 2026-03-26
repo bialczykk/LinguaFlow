@@ -40,7 +40,7 @@ class ConversationHandler:
     def __init__(self, original_text: str, feedback: GrammarFeedback) -> None:
         # Reuse the same model as the analysis chain; lower temperature for
         # consistent, educational responses
-        self._model = ChatAnthropic(model="claude-sonnet-4-5-20250929", temperature=0.3)
+        self._model = ChatAnthropic(model="claude-haiku-4-5-20251001", temperature=0.3)
 
         # Format each grammar issue into a readable numbered list so the
         # system prompt is clear and easy for the model to reference

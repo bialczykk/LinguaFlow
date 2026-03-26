@@ -28,10 +28,10 @@ load_dotenv(_repo_root / ".env")
 
 # -- Model Configuration --
 # temperature=0.3 gives warm, natural conversation responses with some creativity
-_model = ChatAnthropic(model="claude-sonnet-4-5-20250929", temperature=0.3)
+_model = ChatAnthropic(model="claude-haiku-4-5-20251001", temperature=0.3)
 
 # temperature=0 for extraction — we want deterministic, accurate structured output
-_extraction_model = ChatAnthropic(model="claude-sonnet-4-5-20250929", temperature=0)
+_extraction_model = ChatAnthropic(model="claude-haiku-4-5-20251001", temperature=0)
 
 # -- Extraction Prompt --
 # This prompt is used AFTER the conversation to extract a structured profile.

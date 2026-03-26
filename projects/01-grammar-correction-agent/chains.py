@@ -62,7 +62,7 @@ ANALYSIS_PROMPT = ChatPromptTemplate.from_messages(
 # -- Model Configuration --
 # temperature=0 ensures deterministic, consistent output — important for
 # structured extraction where we need the model to reliably follow the schema.
-_model = ChatAnthropic(model="claude-sonnet-4-5-20250929", temperature=0)
+_model = ChatAnthropic(model="claude-haiku-4-5-20251001", temperature=0)
 
 # -- Structured Output Chain --
 # The pipe operator (|) chains the prompt template to the model.

@@ -36,9 +36,9 @@ load_dotenv(_repo_root / ".env")
 
 # -- Model Configuration --
 # temperature=0 for structured/deterministic output in most nodes
-_model = ChatAnthropic(model="claude-sonnet-4-5-20250929", temperature=0)
+_model = ChatAnthropic(model="claude-haiku-4-5-20251001", temperature=0)
 # Slightly higher temperature for drafting — allows more creative lesson plans
-_creative_model = ChatAnthropic(model="claude-sonnet-4-5-20250929", temperature=0.3)
+_creative_model = ChatAnthropic(model="claude-haiku-4-5-20251001", temperature=0.3)
 
 
 def _format_list(items: list[str]) -> str:

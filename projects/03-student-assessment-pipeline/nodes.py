@@ -44,7 +44,7 @@ _repo_root = Path(__file__).resolve().parents[2]
 load_dotenv(_repo_root / ".env")
 
 # -- Model Configuration --
-_model = ChatAnthropic(model="claude-sonnet-4-5-20250929", temperature=0)
+_model = ChatAnthropic(model="claude-haiku-4-5-20251001", temperature=0)
 
 # -- LangSmith Tags --
 _TAGS = ["p3-student-assessment"]

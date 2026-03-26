@@ -62,6 +62,10 @@ Subprojects are developed sequentially following the learning path. Each builds 
 - **Clean separation of concerns.** All mock/supporting code (mock APIs, sample data, simple data stores) must live in clearly separated modules (e.g., `mock_apis/`, `data/`) so that LangGraph ecosystem code reads cleanly on its own. The reader must always be able to distinguish what is LangGraph code vs. supporting scaffolding.
 - **Business context serves learning, not the other way around.** The LinguaFlow domain provides realistic motivation for each project, but infrastructure and APIs should be low-to-moderate effort. Build them in a way that demonstrates how LangGraph libraries interact with external systems without the business logic polluting the LangGraph implementation.
 
+## Model Selection
+
+- **Always use the cheapest Anthropic model** (`claude-haiku-4-5-20251001`) for all LLM calls in project code. This is a learning repo — we don't need the most capable model, and costs add up across projects. Use `ChatAnthropic(model="claude-haiku-4-5-20251001")` everywhere.
+
 ## Critical Rules
 
 - **Always use Context7 MCP** (`/find-docs` or the context7 tools directly) to retrieve the latest documentation for LangChain, LangGraph, LangSmith, and DeepAgents before writing any code that uses these libraries. Do not rely on training data — always fetch current reference docs.
