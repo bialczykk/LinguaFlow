@@ -87,6 +87,17 @@ def retrieve_standards_node(
     return {"retrieved_standards": results}
 
 
+# The 4 dimensions we expect from the criteria scoring node.
+# Smaller models sometimes add extra dimensions (e.g., "Preliminary CEFR Level"
+# with score 0), so we filter to only these valid dimensions after parsing.
+_VALID_DIMENSIONS = {
+    "Grammar & Accuracy",
+    "Vocabulary Range & Precision",
+    "Coherence & Organization",
+    "Task Achievement",
+}
+
+
 @traceable(name="criteria_scoring", run_type="chain", tags=_TAGS)
 def criteria_scoring_node(state: AssessmentState) -> dict:
     """Score the submission across 4 dimensions using retrieved standards.
@@ -96,15 +107,19 @@ def criteria_scoring_node(state: AssessmentState) -> dict:
     The preliminary level drives the next retrieval phase.
 
     LangChain concept: .with_structured_output() for structured generation.
+
+    Note: We use include_raw=True and filter scores manually because
+    smaller models (e.g., Haiku) sometimes add extra dimensions beyond
+    the requested 4, which would fail Pydantic validation.
     """
     structured_model = _model.with_structured_output(
-        CriteriaScores, method="json_schema"
+        CriteriaScores, method="json_schema", include_raw=True
     )
     chain = CRITERIA_SCORING_PROMPT | structured_model
 
     standards_text = _format_documents(state["retrieved_standards"])
 
-    result = chain.invoke(
+    raw_result = chain.invoke(
         {
             "retrieved_standards": standards_text,
             "submission_text": state["submission_text"],
@@ -112,6 +127,19 @@ def criteria_scoring_node(state: AssessmentState) -> dict:
         },
         config={"tags": _TAGS},
     )
+
+    # If structured parsing succeeded, use it directly
+    if raw_result["parsed"] is not None:
+        result = raw_result["parsed"]
+    else:
+        # Parse manually from the raw JSON, filtering to valid dimensions only
+        import json
+        raw_json = json.loads(raw_result["raw"].content)
+        raw_json["scores"] = [
+            s for s in raw_json["scores"]
+            if s.get("dimension") in _VALID_DIMENSIONS and s.get("score", 0) >= 1
+        ]
+        result = CriteriaScores.model_validate(raw_json)
 
     return {
         "criteria_scores": result,
