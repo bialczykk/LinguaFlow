@@ -2,3 +2,6 @@
 __pycache__/
 .pytest_cache/
 .env
+
+# Chroma vector store (generated at runtime)
+**/chroma_db/
