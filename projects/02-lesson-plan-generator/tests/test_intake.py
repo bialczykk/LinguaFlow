@@ -30,44 +30,46 @@ class TestIntakeConversation:
         assert intake.is_complete() is False
 
     def test_conversation_produces_profile(self):
-        """A full conversation should produce a valid StudentProfile."""
+        """A full conversation should produce a valid StudentProfile.
+
+        The LLM drives the conversation, so the number of turns can vary.
+        We provide all required info upfront and then nudge completion
+        with increasingly direct messages.
+        """
         from intake import IntakeConversation
 
         intake = IntakeConversation()
 
-        # First turn: introduce self and goals
+        # Provide all info in one dense message to minimize turn count
         response1 = intake.ask(
-            "Hi! I'm Maria, and I want to improve my English speaking."
+            "Hi! I'm Maria. My English level is B1. I want to practice "
+            "conversation and become more fluent. I'm interested in travel "
+            "and movies. Please create my lesson plan!"
         )
         assert len(response1) > 0
 
-        # Second turn: provide level and topics
-        response2 = intake.ask(
-            "I think my level is around B1. I really like talking about "
-            "travel and movies."
+        # If the LLM still wants to confirm or ask follow-ups, nudge it
+        # toward completion with progressively more direct messages
+        nudges = [
+            "Yes, that's all correct! I'm ready for my lesson plan.",
+            "I've given you everything you need. My name is Maria, level B1, "
+            "I want conversation practice about travel and movies. Please proceed.",
+            "Yes, confirmed. Please finalize my profile now.",
+        ]
+
+        for nudge in nudges:
+            if intake.is_complete():
+                break
+            intake.ask(nudge)
+
+        assert intake.is_complete() is True, (
+            "Intake did not complete after providing all info and 3 nudges. "
+            "The LLM may not be emitting [PROFILE_COMPLETE] reliably."
         )
-        assert len(response2) > 0
-
-        # Third turn: clarify goals
-        response3 = intake.ask(
-            "I mainly want to practice conversation and become more fluent."
-        )
-        assert len(response3) > 0
-
-        # The LLM may need one more turn or may be done
-        if not intake.is_complete():
-            response4 = intake.ask("Yes, that sounds right! Let's go.")
-            assert len(response4) > 0
-
-        # If still not complete after 4 turns, force completion for test
-        if not intake.is_complete():
-            intake.ask("Yes, please create my lesson plan now.")
-
-        assert intake.is_complete() is True
 
         profile = intake.get_profile()
         assert isinstance(profile, StudentProfile)
-        assert profile.name == "Maria" or len(profile.name) > 0
+        assert len(profile.name) > 0
         assert profile.proficiency_level in ["A1", "A2", "B1", "B2", "C1", "C2"]
         assert len(profile.learning_goals) > 0
         assert profile.lesson_type in ["conversation", "grammar", "exam_prep"]
