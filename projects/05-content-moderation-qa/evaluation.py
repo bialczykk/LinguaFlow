@@ -185,6 +185,9 @@ def create_dataset():
         )
 
     print(f"Created dataset '{DATASET_NAME}' with {len(SAMPLE_REQUESTS)} examples")
+    # Print direct URL — workaround for LangSmith UI bug (langsmith-sdk#2494)
+    # where SDK-created datasets don't appear in the Datasets & Testing sidebar
+    print(f"Dataset URL: {dataset.url}")
     return dataset
 
 
