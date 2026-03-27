@@ -107,7 +107,8 @@ def plan_curriculum_node(state: CurriculumEngineState) -> dict:
     # Extract the plan from the agent's output file
     plan_json = _extract_file_content(result, "/work/plan.json")
     if plan_json:
-        plan = json.loads(plan_json)
+        # The agent may return a dict directly or a JSON string
+        plan = plan_json if isinstance(plan_json, dict) else json.loads(plan_json)
     else:
         # Fallback: try to extract from the agent's last message
         last_msg = result["messages"][-1].content if result.get("messages") else ""
