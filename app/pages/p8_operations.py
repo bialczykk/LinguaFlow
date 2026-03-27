@@ -7,7 +7,7 @@ viewing cumulative platform metrics.
 
 import streamlit as st
 from adapters import autonomous_ops
-from components import doc_viewer
+from components import doc_viewer, overview
 
 # -- Resolve doc path relative to repo root --
 _DOC_PATH = "docs/08-autonomous-operations.md"
@@ -388,6 +388,77 @@ def render() -> None:
     """Render the Autonomous Operations interface."""
     st.header("Autonomous Operations")
     st.caption("Cross-department orchestration with autonomous task cascading")
+
+    overview.render(
+        business_scenario=(
+            "LinguaFlow's operations span six departments: Student Onboarding, Tutor Management, "
+            "Content Pipeline, Quality Assurance, Support, and Reporting. A master orchestrator "
+            "receives requests, classifies them, and dispatches to the right department agents — "
+            "in parallel when multiple departments are involved. Agents can generate follow-up tasks "
+            "for other departments, creating autonomous cascades (e.g., onboarding a student "
+            "automatically triggers tutor matching). High-risk actions like publishing content or "
+            "assigning tutors require human approval before proceeding."
+        ),
+        tech_flowchart="""
+            digraph {
+                rankdir=TB
+                node [shape=box style="rounded,filled" fillcolor="#f0f4ff" fontname="Helvetica" fontsize=11]
+                edge [fontname="Helvetica" fontsize=10]
+
+                request [label="User\\nRequest" shape=note fillcolor="#fff3cd"]
+                classifier [label="Request\\nClassifier"]
+                risk [label="Risk\\nAssessor"]
+                low [label="Low Risk?" shape=diamond fillcolor="#d4edda"]
+                approval [label="interrupt()\\nApproval Gate" shape=octagon fillcolor="#f8d7da"]
+                dispatch [label="Dispatch\\nDepartments"]
+
+                subgraph cluster_departments {
+                    label="Department Agents (DeepAgents + Send)"
+                    style=dashed
+                    onboard [label="Student\\nOnboarding"]
+                    tutor [label="Tutor\\nManagement"]
+                    content [label="Content\\nPipeline"]
+                    qa [label="Quality\\nAssurance"]
+                    support [label="Support"]
+                    reporting [label="Reporting"]
+                }
+
+                aggregator [label="Result\\nAggregator"]
+                queue [label="Task Queue\\nLoop" shape=diamond fillcolor="#ffeeba"]
+                compose [label="Compose\\nOutput"]
+                metrics [label="Reporting\\nSnapshot"]
+                done [label="Final\\nResponse" shape=note fillcolor="#fff3cd"]
+                langsmith [label="LangSmith\\nTracing" shape=ellipse fillcolor="#e8daef"]
+
+                request -> classifier
+                classifier -> risk
+                risk -> low
+                low -> dispatch [label="auto"]
+                low -> approval [label="high risk"]
+                approval -> dispatch [label="approved"]
+                approval -> compose [label="rejected"]
+                dispatch -> onboard
+                dispatch -> tutor
+                dispatch -> content
+                dispatch -> qa
+                dispatch -> support
+                dispatch -> reporting
+                onboard -> aggregator
+                tutor -> aggregator
+                content -> aggregator
+                qa -> aggregator
+                support -> aggregator
+                reporting -> aggregator
+                aggregator -> queue
+                queue -> classifier [label="follow-ups"]
+                queue -> compose [label="done"]
+                compose -> metrics
+                metrics -> done
+                classifier -> langsmith [style=dashed]
+            }
+        """,
+        key_prefix="p8",
+    )
 
     _init_state()
 
