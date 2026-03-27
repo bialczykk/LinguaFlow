@@ -19,7 +19,7 @@ st.html("""
 """)
 
 # -- Import page modules --
-from pages import p1_grammar, p2_lesson, p3_assessment, p4_tutor, p5_moderation, p7_curriculum  # noqa: E402
+from pages import p1_grammar, p2_lesson, p3_assessment, p4_tutor, p5_moderation, p6_support, p7_curriculum  # noqa: E402
 
 
 def main() -> None:
@@ -28,12 +28,13 @@ def main() -> None:
     st.caption("Interactive interface for LangGraph ecosystem learning projects")
 
     # -- Tab bar --
-    tab1, tab2, tab3, tab4, tab5, tab7 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
         "✏️ Grammar Agent",
         "📋 Lesson Planner",
         "📊 Assessment Pipeline",
         "🤝 Tutor Matching",
         "🛡️ Content Moderation",
+        "🎯 Support System",
         "🧠 Curriculum Engine",
     ])
 
@@ -51,6 +52,9 @@ def main() -> None:
 
     with tab5:
         p5_moderation.render()
+
+    with tab6:
+        p6_support.render()
 
     with tab7:
         p7_curriculum.render()

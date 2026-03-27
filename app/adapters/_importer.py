@@ -13,6 +13,7 @@ import sys
 _CONFLICTING = {
     "models", "graph", "nodes", "prompts", "chains",
     "conversation", "intake", "ingestion", "tools", "agents",
+    "evaluation",
 }
 
 
