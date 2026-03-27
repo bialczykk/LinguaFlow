@@ -25,13 +25,13 @@ new high-risk action is a one-line change to HIGH_RISK_ACTIONS.
 # Read/lookup/aggregate actions are implicitly low-risk (not listed here).
 HIGH_RISK_ACTIONS: dict[str, set[str]] = {
     # Publishing content is irreversible once live on the platform.
-    "content_pipeline": {"publish_content"},
+    "content_pipeline": {"publish_content", "publish"},
     # Issuing a refund moves money — must always have a human sign-off.
-    "support": {"process_refund"},
+    "support": {"process_refund", "refund"},
     # Assigning a tutor directly affects a student's learning relationship.
-    "tutor_management": {"assign_tutor"},
+    "tutor_management": {"assign_tutor", "assign"},
     # Flagging a QA issue can escalate to account suspension or content removal.
-    "quality_assurance": {"flag_issue"},
+    "quality_assurance": {"flag_issue", "flag"},
     # Creating a study plan locks in a personalised curriculum — high stakes.
     "student_onboarding": {"create_study_plan"},
 }
@@ -67,16 +67,18 @@ def assess_risk(classification: dict) -> str:
         >>> assess_risk({"departments": ["content_pipeline"], "action_type": "publish_content"})
         'high'
     """
-    action_type = classification.get("action_type", "")
+    action_type = classification.get("action_type", "").lower()
     departments = classification.get("departments", [])
 
-    # Iterate over each department and check if the action is in its high-risk set.
-    # We use dict.get(dept, set()) so that unknown departments return an empty set
-    # rather than raising a KeyError — unknown = low risk by default.
+    # Iterate over each department and check if the action matches its high-risk set.
+    # We use substring matching because the LLM may return compound action types
+    # like "generate_and_publish" or "cancel_lesson_and_refund". If any high-risk
+    # keyword appears anywhere in the action_type string, we flag it.
     for dept in departments:
         high_risk_set = HIGH_RISK_ACTIONS.get(dept, set())
-        if action_type in high_risk_set:
-            return "high"
+        for risky_action in high_risk_set:
+            if risky_action in action_type or action_type in risky_action:
+                return "high"
 
     # No department flagged this action as high risk → auto-execute tier.
     return "low"

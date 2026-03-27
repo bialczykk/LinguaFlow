@@ -23,10 +23,8 @@ DeepAgents concepts demonstrated:
 from pathlib import Path
 
 from deepagents import create_deep_agent
-from deepagents.backends import CompositeBackend, StateBackend
-from deepagents.backends.store import StoreBackend
+from deepagents.backends import StateBackend
 from langchain_anthropic import ChatAnthropic
-from langgraph.store.memory import InMemoryStore
 
 from prompts import (
     CONTENT_PIPELINE_PROMPT,
@@ -56,40 +54,32 @@ SKILLS_DIR = _PROJECT_DIR / "skills"
 # Always use the cheapest Anthropic model — this is a learning repo, not production
 _MODEL = ChatAnthropic(model="claude-haiku-4-5-20251001", temperature=0.3)
 
-# Shared InMemoryStore — persistent namespace across threads within a session
-# (StoreBackend reads/writes here; StateBackend is per-thread ephemeral)
-_store = InMemoryStore()
-
 # LangSmith tags so every trace is filterable by project in the LangSmith UI
 _TAGS = ["p8-autonomous-operations"]
 
 
 # ---------------------------------------------------------------------------
-# Composite backend factory
+# Backend factory
 # ---------------------------------------------------------------------------
 
-def create_composite_backend():
-    """Create a CompositeBackend factory that routes file paths to the right storage.
+def create_state_backend():
+    """Create a StateBackend factory for ephemeral, thread-scoped file storage.
 
-    Routing rules:
-    - /persistent/ → StoreBackend (survives across threads; cross-session records)
-    - Default       → StateBackend (ephemeral; scoped to the current thread)
+    DeepAgents concept: StateBackend stores files in the LangGraph thread state.
+    Files are ephemeral — they exist only for the duration of one agent invocation.
+    This is sufficient for the capstone because each department agent handles a
+    single request and doesn't need cross-session persistence.
 
-    DeepAgents concept: CompositeBackend lets a single agent transparently use
-    multiple storage strategies. Ephemeral files disappear when a thread ends,
-    while persistent files survive across sessions in _store.
+    Note: P7 uses CompositeBackend (StateBackend + StoreBackend) for persistent
+    catalog storage. That pattern requires the InMemoryStore to be propagated
+    through the LangGraph runtime, which is complex when agents are invoked from
+    within an outer orchestrator graph. Using StateBackend alone keeps things simple.
 
     Returns:
-        A factory callable ``(runtime) -> CompositeBackend`` that DeepAgents
-        calls once per agent invocation to wire up the correct backends.
+        A factory callable ``(runtime) -> StateBackend``.
     """
     def factory(runtime):
-        return CompositeBackend(
-            default=StateBackend(runtime),
-            routes={
-                "/persistent/": StoreBackend(runtime),
-            },
-        )
+        return StateBackend(runtime)
     return factory
 
 
@@ -111,8 +101,7 @@ def create_onboarding_agent():
         system_prompt=STUDENT_ONBOARDING_PROMPT,
         tools=STUDENT_ONBOARDING_TOOLS,
         skills=[str(SKILLS_DIR) + "/"],
-        backend=create_composite_backend(),
-        store=_store,
+        backend=create_state_backend(),
     )
 
 
@@ -129,8 +118,7 @@ def create_tutor_agent():
         system_prompt=TUTOR_MANAGEMENT_PROMPT,
         tools=TUTOR_MANAGEMENT_TOOLS,
         skills=[str(SKILLS_DIR) + "/"],
-        backend=create_composite_backend(),
-        store=_store,
+        backend=create_state_backend(),
     )
 
 
@@ -147,8 +135,7 @@ def create_content_agent():
         system_prompt=CONTENT_PIPELINE_PROMPT,
         tools=CONTENT_PIPELINE_TOOLS,
         skills=[str(SKILLS_DIR) + "/"],
-        backend=create_composite_backend(),
-        store=_store,
+        backend=create_state_backend(),
     )
 
 
@@ -165,8 +152,7 @@ def create_qa_agent():
         system_prompt=QA_PROMPT,
         tools=QA_TOOLS,
         skills=[str(SKILLS_DIR) + "/"],
-        backend=create_composite_backend(),
-        store=_store,
+        backend=create_state_backend(),
     )
 
 
@@ -183,8 +169,7 @@ def create_support_agent():
         system_prompt=SUPPORT_PROMPT,
         tools=SUPPORT_TOOLS,
         skills=[str(SKILLS_DIR) + "/"],
-        backend=create_composite_backend(),
-        store=_store,
+        backend=create_state_backend(),
     )
 
 
@@ -201,8 +186,7 @@ def create_reporting_agent():
         system_prompt=REPORTING_PROMPT,
         tools=REPORTING_TOOLS,
         skills=[str(SKILLS_DIR) + "/"],
-        backend=create_composite_backend(),
-        store=_store,
+        backend=create_state_backend(),
     )
 
 
