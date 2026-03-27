@@ -12,6 +12,7 @@ Node overview:
 """
 
 import json
+import re
 from typing import Any
 
 from langchain_anthropic import ChatAnthropic
@@ -147,18 +148,27 @@ def supervisor_router(state: SupportState) -> dict:
 
     response = _classification_model.invoke(messages)
 
-    # Parse the JSON response from the LLM
+    # Parse the JSON response from the LLM.
+    # Haiku sometimes wraps JSON in markdown code fences (```json ... ```),
+    # so we strip those before parsing.
+    raw = response.content
     try:
-        classification = json.loads(response.content)
-    except (json.JSONDecodeError, AttributeError):
-        # Fallback: treat as a general request needing clarification
-        classification = {
-            "departments": [],
-            "needs_clarification": True,
-            "clarification_question": "Could you please describe your issue in more detail?",
-            "summary": "Unparseable request",
-            "complexity": "single",
-        }
+        # Try direct parse first
+        classification = json.loads(raw)
+    except (json.JSONDecodeError, TypeError):
+        # Strip markdown code fences and retry
+        stripped = re.sub(r"```(?:json)?\s*", "", raw).strip().rstrip("`")
+        try:
+            classification = json.loads(stripped)
+        except (json.JSONDecodeError, TypeError, AttributeError):
+            # Fallback: treat as a general request needing clarification
+            classification = {
+                "departments": [],
+                "needs_clarification": True,
+                "clarification_question": "Could you please describe your issue in more detail?",
+                "summary": "Unparseable request",
+                "complexity": "single",
+            }
 
     result: dict = {"classification": classification}
 
