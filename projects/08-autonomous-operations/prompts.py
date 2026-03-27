@@ -98,10 +98,10 @@ Compose a unified response."""),
 # Department system prompts
 # ---------------------------------------------------------------------------
 
-# Each prompt is a plain string because department agents receive it as their
-# system message at agent-creation time (via ChatAnthropic system parameter or
-# equivalent). Placeholders use single braces and are filled at runtime by the
-# orchestrator before passing to the agent.
+# Each prompt is a plain string used as the system message for the DeepAgent.
+# Request-specific context (student_id, request text, follow-up context) is
+# passed via the user message at invocation time — NOT embedded in the system
+# prompt, because agents are created once and reused across requests.
 
 # --- Student Onboarding ---
 
@@ -122,11 +122,7 @@ Instructions:
 3. After creating the study plan, generate a follow_up_task for the tutor_management department
    so that an appropriate tutor can be assigned. Include the student's CEFR level and goals
    in the follow-up context.
-4. Report what was accomplished and what follow-up was queued.
-
-Student ID       : {student_id}
-Request          : {request}
-Follow-up context: {follow_up_context}"""
+4. Report what was accomplished and what follow-up was queued."""
 
 
 # --- Tutor Management ---
@@ -147,11 +143,7 @@ Instructions:
 1. Use the student's level and goals (from follow_up_context if provided) to call search_tutors.
 2. Check availability for the top candidates.
 3. Assign the best available tutor.
-4. Report the assigned tutor's name, level specialisation, and first available slot.
-
-Student ID       : {student_id}
-Request          : {request}
-Follow-up context: {follow_up_context}"""
+4. Report the assigned tutor's name, level specialisation, and first available slot."""
 
 
 # --- Content Pipeline ---
@@ -175,10 +167,7 @@ Instructions:
    the content can be reviewed. Include the content_id and relevant context in the follow-up.
 4. Only call publish_content if the request explicitly states the content is pre-approved,
    or if you have received a follow-up context confirming QA approval.
-5. Report what was generated, what was submitted, and what follow-up was queued.
-
-Request          : {request}
-Follow-up context: {follow_up_context}"""
+5. Report what was generated, what was submitted, and what follow-up was queued."""
 
 
 # --- Quality Assurance ---
@@ -201,10 +190,7 @@ Instructions:
    a follow_up_task for the content_pipeline department so the content can be corrected.
 3. If the review passes, note that content is cleared for publishing.
 4. If the request involves satisfaction checks, call check_satisfaction.
-5. Report your findings clearly, including any follow-up tasks queued.
-
-Request          : {request}
-Follow-up context: {follow_up_context}"""
+5. Report your findings clearly, including any follow-up tasks queued."""
 
 
 # --- Support ---
@@ -230,11 +216,7 @@ Instructions:
 2. Call the relevant tool(s) to retrieve the needed information.
 3. Provide a clear, empathetic response based on the results.
 4. If the issue requires action by another department (e.g., a refund needs finance approval),
-   note it as a pending item — do NOT attempt to resolve it yourself.
-
-Student ID       : {student_id}
-Request          : {request}
-Follow-up context: {follow_up_context}"""
+   note it as a pending item — do NOT attempt to resolve it yourself."""
 
 
 # --- Reporting ---
@@ -254,6 +236,4 @@ Instructions:
 1. Identify which department(s) and time period the request covers.
 2. Call the relevant tools to gather data.
 3. Present findings in a clear, structured format — use bullet points or short tables where helpful.
-4. Highlight any anomalies (e.g., unusually high error rates, backlogs, or low satisfaction scores).
-
-Request: {request}"""
+4. Highlight any anomalies (e.g., unusually high error rates, backlogs, or low satisfaction scores)."""

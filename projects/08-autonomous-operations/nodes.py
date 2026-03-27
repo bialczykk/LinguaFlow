@@ -198,13 +198,19 @@ def department_executor(state: OrchestratorState) -> dict:
     request = state.get("request", "")
     current_task = state.get("current_task")
 
-    # Build the invocation prompt including any follow-up context
+    # Build a rich user message with all context the agent needs.
+    # Context-specific details go in the user message (not the system prompt)
+    # because agents are created once with a static system prompt.
+    metadata = state.get("request_metadata", {})
+    student_id = metadata.get("student_id", metadata.get("user_id", "unknown"))
+
+    parts = [f"Request: {request}"]
+    if student_id != "unknown":
+        parts.append(f"Student ID: {student_id}")
     if current_task:
-        invoke_request = (
-            f"{request}\n\nFollow-up task: {json.dumps(current_task)}"
-        )
-    else:
-        invoke_request = request
+        parts.append(f"Follow-up context: {json.dumps(current_task)}")
+
+    invoke_request = "\n".join(parts)
 
     # Instantiate the department agent using its factory function
     agent = DEPARTMENT_AGENTS[dept]()
