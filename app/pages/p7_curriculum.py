@@ -12,7 +12,7 @@ DeepAgents concepts visible in the UI:
 
 import streamlit as st
 from adapters import curriculum_engine
-from components import doc_viewer
+from components import doc_viewer, overview
 
 # -- Resolve doc path relative to repo root --
 _DOC_PATH = "docs/07-curriculum-engine.md"
@@ -270,6 +270,59 @@ def render() -> None:
     """Render the Intelligent Curriculum Engine interface."""
     st.header("Intelligent Curriculum Engine")
     st.caption("DeepAgents-powered curriculum module generator with HITL approval")
+
+    overview.render(
+        business_scenario=(
+            "Curriculum designers specify a topic and CEFR level, and the system generates "
+            "a complete teaching module: lesson content, practice exercises, and assessment. "
+            "Each artifact goes through expert review with approve/revise/reject gates. "
+            "This turns a multi-day curriculum development process into an interactive, "
+            "AI-assisted workflow where humans stay in control of quality."
+        ),
+        tech_flowchart="""
+            digraph {
+                rankdir=TB
+                node [shape=box style="rounded,filled" fillcolor="#f0f4ff" fontname="Helvetica" fontsize=11]
+                edge [fontname="Helvetica" fontsize=10]
+
+                request [label="Curriculum\\nRequest" shape=note fillcolor="#fff3cd"]
+                planner [label="Planner\\nDeepAgent" fillcolor="#d4edda"]
+                skill1 [label="SKILL.md\\nTemplates" shape=note fillcolor="#e8daef"]
+
+                review_plan [label="interrupt()\\nReview Plan" shape=octagon fillcolor="#f8d7da"]
+                lesson [label="Lesson\\nDeepAgent" fillcolor="#d4edda"]
+                review_lesson [label="interrupt()\\nReview Lesson" shape=octagon fillcolor="#f8d7da"]
+                exercises [label="Exercise\\nDeepAgent" fillcolor="#d4edda"]
+                review_ex [label="interrupt()\\nReview Exercises" shape=octagon fillcolor="#f8d7da"]
+                assessment [label="Assessment\\nDeepAgent" fillcolor="#d4edda"]
+                review_assess [label="interrupt()\\nReview Assessment" shape=octagon fillcolor="#f8d7da"]
+                assemble [label="Assemble\\nModule"]
+                output [label="Complete\\nModule" shape=note fillcolor="#fff3cd"]
+                store [label="Composite\\nMemory Backend" shape=cylinder fillcolor="#d6eaf8"]
+                langsmith [label="LangSmith\\nTracing" shape=ellipse fillcolor="#e8daef"]
+
+                request -> planner
+                planner -> skill1 [style=dashed label="reads"]
+                planner -> review_plan
+                review_plan -> lesson [label="approve"]
+                review_plan -> planner [label="revise"]
+                lesson -> review_lesson
+                review_lesson -> exercises [label="approve"]
+                review_lesson -> lesson [label="revise"]
+                exercises -> review_ex
+                review_ex -> assessment [label="approve"]
+                review_ex -> exercises [label="revise"]
+                assessment -> review_assess
+                review_assess -> assemble [label="approve"]
+                review_assess -> assessment [label="revise"]
+                assemble -> output
+                planner -> store [style=dashed]
+                lesson -> store [style=dashed]
+                planner -> langsmith [style=dashed]
+            }
+        """,
+        key_prefix="p7",
+    )
 
     _init_state()
 

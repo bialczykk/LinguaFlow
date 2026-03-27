@@ -5,7 +5,7 @@ Two-phase interface: intake conversation, then plan generation.
 
 import streamlit as st
 from adapters import lesson_planner
-from components import doc_viewer
+from components import doc_viewer, overview
 
 _DOC_PATH = "docs/02-lesson-plan-generator.md"
 
@@ -80,6 +80,41 @@ def render() -> None:
     """Render the Lesson Plan Generator interface."""
     st.header("Lesson Plan Generator")
     st.caption("Conversational intake followed by personalized lesson plan generation")
+
+    overview.render(
+        business_scenario=(
+            "New students go through an intake conversation that gathers their name, level, "
+            "lesson preferences, and goals. Once the profile is complete, the system generates "
+            "a fully structured lesson plan tailored to their needs \u2014 warm-up, activities, "
+            "homework, and timing. This automates the lesson prep workflow that tutors "
+            "typically spend 20-30 minutes on per student."
+        ),
+        tech_flowchart="""
+            digraph {
+                rankdir=LR
+                node [shape=box style="rounded,filled" fillcolor="#f0f4ff" fontname="Helvetica" fontsize=11]
+                edge [fontname="Helvetica" fontsize=10]
+
+                start [label="START" shape=circle fillcolor="#d4edda" width=0.5]
+                intake [label="Intake Node\\n(conversational)"]
+                check [label="Complete?" shape=diamond fillcolor="#ffeeba"]
+                extract [label="Extract\\nProfile"]
+                generate [label="Generate\\nLesson Plan"]
+                output [label="Structured\\nLessonPlan" shape=note fillcolor="#fff3cd"]
+                langsmith [label="LangSmith\\nTracing" shape=ellipse fillcolor="#e8daef"]
+
+                start -> intake
+                intake -> check
+                check -> intake [label="no\\n(ask next Q)"]
+                check -> extract [label="yes"]
+                extract -> generate
+                generate -> output [label="with_structured_output()"]
+                intake -> langsmith [style=dashed]
+                generate -> langsmith [style=dashed]
+            }
+        """,
+        key_prefix="p2",
+    )
 
     # -- Sample profile selector (skip intake shortcut) --
     sample_labels = ["(use intake conversation)"] + [

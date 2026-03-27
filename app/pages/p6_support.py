@@ -8,7 +8,7 @@ clarification before processing.
 
 import streamlit as st
 from adapters import support_system
-from components import doc_viewer
+from components import doc_viewer, overview
 
 # -- Resolve doc path relative to repo root --
 _DOC_PATH = "docs/06-multi-department-support.md"
@@ -233,6 +233,60 @@ def render() -> None:
     """Render the Multi-Department Support System interface."""
     st.header("Multi-Department Support System")
     st.caption("Multi-agent orchestration with parallel department routing and clarification flow")
+
+    overview.render(
+        business_scenario=(
+            "Students and staff submit support requests that may span multiple departments "
+            "(billing, tech support, scheduling, content library). A supervisor agent classifies "
+            "the request, asks for clarification if ambiguous, then dispatches to the right "
+            "department agents \u2014 in parallel when multiple departments are involved. "
+            "Responses are aggregated into a single coherent reply. This replaces the manual "
+            "triage queue and reduces resolution time for multi-department issues."
+        ),
+        tech_flowchart="""
+            digraph {
+                rankdir=TB
+                node [shape=box style="rounded,filled" fillcolor="#f0f4ff" fontname="Helvetica" fontsize=11]
+                edge [fontname="Helvetica" fontsize=10]
+
+                request [label="Support\\nRequest" shape=note fillcolor="#fff3cd"]
+                classify [label="Supervisor\\nClassifier"]
+                ambiguous [label="Ambiguous?" shape=diamond fillcolor="#ffeeba"]
+                interrupt [label="interrupt()\\nClarification" shape=octagon fillcolor="#f8d7da"]
+                router [label="Department\\nRouter"]
+
+                subgraph cluster_parallel {
+                    label="Parallel Dispatch (Send API)"
+                    style=dashed
+                    billing [label="Billing\\nAgent"]
+                    tech [label="Tech Support\\nAgent"]
+                    scheduling [label="Scheduling\\nAgent"]
+                    content [label="Content\\nAgent"]
+                }
+
+                aggregate [label="Aggregate\\nResponses"]
+                response [label="Final\\nResponse" shape=note fillcolor="#fff3cd"]
+                langsmith [label="LangSmith\\nTracing" shape=ellipse fillcolor="#e8daef"]
+
+                request -> classify
+                classify -> ambiguous
+                ambiguous -> interrupt [label="yes"]
+                interrupt -> classify [label="Command(resume)"]
+                ambiguous -> router [label="no"]
+                router -> billing
+                router -> tech
+                router -> scheduling
+                router -> content
+                billing -> aggregate
+                tech -> aggregate
+                scheduling -> aggregate
+                content -> aggregate
+                aggregate -> response
+                classify -> langsmith [style=dashed]
+            }
+        """,
+        key_prefix="p6",
+    )
 
     _init_state()
 

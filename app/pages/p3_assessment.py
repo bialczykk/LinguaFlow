@@ -5,7 +5,7 @@ Form-based interface for submitting writing and viewing CEFR assessment results.
 
 import streamlit as st
 from adapters import assessment
-from components import doc_viewer, results
+from components import doc_viewer, overview, results
 
 _DOC_PATH = "docs/03-student-assessment-pipeline.md"
 
@@ -24,6 +24,42 @@ def render() -> None:
     """Render the Student Assessment Pipeline interface."""
     st.header("Student Assessment Pipeline")
     st.caption("Submit student writing for comprehensive CEFR-level assessment")
+
+    overview.render(
+        business_scenario=(
+            "Assessors submit student writing and receive a multi-criteria CEFR evaluation "
+            "covering grammar, vocabulary, coherence, and task achievement. The system retrieves "
+            "official CEFR rubrics from a vector store for grounding, then runs comparative "
+            "analysis across proficiency levels. This standardizes assessment quality across "
+            "different evaluators and provides evidence-backed scoring."
+        ),
+        tech_flowchart="""
+            digraph {
+                rankdir=LR
+                node [shape=box style="rounded,filled" fillcolor="#f0f4ff" fontname="Helvetica" fontsize=11]
+                edge [fontname="Helvetica" fontsize=10]
+
+                input [label="Student\\nSubmission" shape=note fillcolor="#fff3cd"]
+                retrieve [label="Retrieve\\nCEFR Rubrics"]
+                vectordb [label="Chroma\\nVector Store" shape=cylinder fillcolor="#d6eaf8"]
+                initial [label="Initial\\nAssessment"]
+                comparative [label="Comparative\\nAnalysis"]
+                final [label="Final\\nScoring"]
+                output [label="CEFR Report\\n+ Scores" shape=note fillcolor="#fff3cd"]
+                langsmith [label="LangSmith\\nTracing" shape=ellipse fillcolor="#e8daef"]
+
+                input -> retrieve
+                retrieve -> vectordb [dir=both label="similarity\\nsearch"]
+                retrieve -> initial [label="rubrics +\\nsubmission"]
+                initial -> comparative [label="adjacent\\nlevels"]
+                comparative -> final
+                final -> output
+                initial -> langsmith [style=dashed]
+                comparative -> langsmith [style=dashed]
+            }
+        """,
+        key_prefix="p3",
+    )
 
     # -- Sample submission selector --
     samples = assessment.get_sample_submissions()

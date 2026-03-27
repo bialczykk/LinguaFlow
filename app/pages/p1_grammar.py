@@ -5,7 +5,7 @@ Chat-based interface for grammar analysis with follow-up conversation.
 
 import streamlit as st
 from adapters import grammar_agent
-from components import doc_viewer
+from components import doc_viewer, overview
 
 # -- Resolve doc path relative to repo root --
 _DOC_PATH = "docs/01-grammar-correction-agent.md"
@@ -84,6 +84,37 @@ def render() -> None:
     """Render the Grammar Correction Agent interface."""
     st.header("Grammar Correction Agent")
     st.caption("Analyze student writing for grammar issues and CEFR proficiency")
+
+    overview.render(
+        business_scenario=(
+            "Students submit writing samples and receive instant, detailed grammar feedback "
+            "with a CEFR proficiency assessment. This replaces manual teacher grading for "
+            "initial diagnostics, giving students immediate actionable feedback while "
+            "freeing up instructor time for higher-value interactions."
+        ),
+        tech_flowchart="""
+            digraph {
+                rankdir=LR
+                node [shape=box style="rounded,filled" fillcolor="#f0f4ff" fontname="Helvetica" fontsize=11]
+                edge [fontname="Helvetica" fontsize=10]
+
+                input [label="Student\\nWriting" shape=note fillcolor="#fff3cd"]
+                agent [label="LangChain Agent\\n(ChatAnthropic)"]
+                structured [label="Structured Output\\n(Pydantic)" fillcolor="#d4edda"]
+                feedback [label="Grammar\\nFeedback" shape=note fillcolor="#fff3cd"]
+                followup [label="Follow-up\\nConversation"]
+                langsmith [label="LangSmith\\nTracing" shape=ellipse fillcolor="#e8daef"]
+
+                input -> agent [label="analyze"]
+                agent -> structured [label="with_structured_output()"]
+                structured -> feedback
+                feedback -> followup [label="user asks"]
+                followup -> agent [label="context-aware"]
+                agent -> langsmith [style=dashed label="traces"]
+            }
+        """,
+        key_prefix="p1",
+    )
 
     # -- Sample text selector --
     samples = grammar_agent.get_sample_texts()

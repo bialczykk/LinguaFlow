@@ -7,7 +7,7 @@ moderator at two interrupt points (draft review, final review).
 
 import streamlit as st
 from adapters import content_moderation
-from components import doc_viewer
+from components import doc_viewer, overview
 
 # -- Resolve doc path relative to repo root --
 _DOC_PATH = "docs/05-content-moderation-qa.md"
@@ -297,6 +297,45 @@ def render() -> None:
     """Render the Content Moderation & QA System interface."""
     st.header("Content Moderation & QA System")
     st.caption("Human-in-the-loop content pipeline with interrupt/resume")
+
+    overview.render(
+        business_scenario=(
+            "The platform needs educational content (grammar explanations, exercises, "
+            "reading passages) generated at scale, but every piece must pass human review "
+            "before reaching students. Content moderators review AI-generated drafts, "
+            "can edit or reject with feedback, and give final publication approval. "
+            "This ensures quality control while dramatically speeding up content creation."
+        ),
+        tech_flowchart="""
+            digraph {
+                rankdir=LR
+                node [shape=box style="rounded,filled" fillcolor="#f0f4ff" fontname="Helvetica" fontsize=11]
+                edge [fontname="Helvetica" fontsize=10]
+
+                request [label="Content\\nRequest" shape=note fillcolor="#fff3cd"]
+                generate [label="Generate\\nDraft"]
+                interrupt1 [label="interrupt()\\nDraft Review" shape=octagon fillcolor="#f8d7da"]
+                moderator1 [label="Moderator\\nDecision" shape=diamond fillcolor="#ffeeba"]
+                polish [label="Polish\\nContent"]
+                interrupt2 [label="interrupt()\\nFinal Review" shape=octagon fillcolor="#f8d7da"]
+                moderator2 [label="Publish?" shape=diamond fillcolor="#ffeeba"]
+                publish [label="Published" shape=note fillcolor="#d4edda"]
+                langsmith [label="LangSmith\\nTracing" shape=ellipse fillcolor="#e8daef"]
+
+                request -> generate
+                generate -> interrupt1
+                interrupt1 -> moderator1 [label="Command\\n(resume)"]
+                moderator1 -> generate [label="reject"]
+                moderator1 -> polish [label="approve/edit"]
+                polish -> interrupt2
+                interrupt2 -> moderator2 [label="Command\\n(resume)"]
+                moderator2 -> publish [label="approve"]
+                moderator2 -> generate [label="reject"]
+                generate -> langsmith [style=dashed]
+            }
+        """,
+        key_prefix="p5",
+    )
 
     _init_state()
 

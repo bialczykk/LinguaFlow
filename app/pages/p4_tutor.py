@@ -6,7 +6,7 @@ multi-phase conversational agent with tool calling.
 
 import streamlit as st
 from adapters import tutor_matching
-from components import doc_viewer
+from components import doc_viewer, overview
 
 # -- Resolve doc path relative to repo root --
 _DOC_PATH = "docs/04-tutor-matching-agent.md"
@@ -38,6 +38,41 @@ def render() -> None:
     """Render the Tutor Matching Agent interface."""
     st.header("Tutor Matching & Scheduling Agent")
     st.caption("Find and book the right English tutor through conversation")
+
+    overview.render(
+        business_scenario=(
+            "Students describe what they want to learn and their scheduling constraints "
+            "through natural conversation. The agent searches the tutor database, presents "
+            "matching options, and handles booking \u2014 all in one chat flow. This replaces "
+            "the manual process of browsing tutor profiles, checking availability, and "
+            "coordinating schedules."
+        ),
+        tech_flowchart="""
+            digraph {
+                rankdir=LR
+                node [shape=box style="rounded,filled" fillcolor="#f0f4ff" fontname="Helvetica" fontsize=11]
+                edge [fontname="Helvetica" fontsize=10]
+
+                user [label="Student\\nMessage" shape=note fillcolor="#fff3cd"]
+                agent [label="ReAct Agent\\n(tool-calling LLM)"]
+                tools [label="Tools" shape=record fillcolor="#d4edda"
+                       label="{Tools|search_tutors|check_availability|book_session}"]
+                checkpointer [label="SQLite\\nCheckpointer" shape=cylinder fillcolor="#d6eaf8"]
+                phase [label="Phase\\nTracking" fillcolor="#ffeeba"]
+                response [label="Agent\\nResponse" shape=note fillcolor="#fff3cd"]
+                langsmith [label="LangSmith\\nTracing" shape=ellipse fillcolor="#e8daef"]
+
+                user -> agent
+                agent -> tools [label="bind_tools()"]
+                tools -> agent [label="results"]
+                agent -> checkpointer [dir=both label="persist\\nstate"]
+                agent -> phase [label="gather > search\\n> present > book"]
+                agent -> response
+                agent -> langsmith [style=dashed]
+            }
+        """,
+        key_prefix="p4",
+    )
 
     # -- Initialize session state --
     if "p4_thread_id" not in st.session_state:
