@@ -303,7 +303,9 @@ def _render_activity() -> None:
                 if completed_tasks:
                     st.markdown(f"**Completed Tasks** ({len(completed_tasks)}):")
                     for task in completed_tasks:
-                        st.markdown(f"- {task.get('target_dept', '?')} — {task.get('action', '')[:80]}")
+                        dept = task.get("department", task.get("target_dept", "?"))
+                        summary = task.get("response", task.get("action", ""))[:120]
+                        st.markdown(f"- **{dept}**: {summary}")
 
 
 # ---------------------------------------------------------------------------
