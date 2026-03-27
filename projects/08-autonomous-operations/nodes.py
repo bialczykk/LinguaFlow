@@ -209,12 +209,29 @@ def department_executor(state: OrchestratorState) -> dict:
     # Instantiate the department agent using its factory function
     agent = DEPARTMENT_AGENTS[dept]()
 
-    # Invoke the DeepAgent with the request
-    agent_response = agent.invoke({"message": invoke_request})
+    # Invoke the DeepAgent with the request — DeepAgents expect messages input
+    # (same format as LangGraph graphs), following the P7 invocation pattern.
+    invoke_input = {
+        "messages": [{"role": "user", "content": invoke_request}],
+    }
+    config = {"tags": _TAGS}
+    agent_response = agent.invoke(invoke_input, config=config)
 
-    # Extract the text response from the agent's output
+    # Extract the text response from the agent's output.
+    # DeepAgents return state dicts with "messages" containing the conversation.
     if isinstance(agent_response, dict):
-        response_text = agent_response.get("response", str(agent_response))
+        messages = agent_response.get("messages", [])
+        if messages:
+            # Last message is the agent's final response
+            last_msg = messages[-1]
+            if hasattr(last_msg, "content"):
+                response_text = last_msg.content
+            elif isinstance(last_msg, dict):
+                response_text = last_msg.get("content", str(last_msg))
+            else:
+                response_text = str(last_msg)
+        else:
+            response_text = agent_response.get("response", str(agent_response))
     else:
         response_text = str(agent_response)
 
