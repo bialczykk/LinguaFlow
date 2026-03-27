@@ -165,8 +165,13 @@ def approval_gate(
     # Suspend the graph — the caller receives `payload` and must resume with a decision
     operator_decision = interrupt(payload)
 
-    # Route based on the operator's response
-    if operator_decision == "approved":
+    # Route based on the operator's response.
+    # Accept both string "approved" (from tests/CLI) and dict {"action": "approve"} (from UI).
+    is_approved = (
+        operator_decision == "approved"
+        or (isinstance(operator_decision, dict) and operator_decision.get("action") == "approve")
+    )
+    if is_approved:
         return Command(goto="dispatch_departments")
     else:
         return Command(
