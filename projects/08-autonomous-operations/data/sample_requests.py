@@ -20,7 +20,7 @@ Routing patterns:
 SAMPLE_REQUESTS = [
     {
         "text": "Onboard new student Maria Silva, she's interested in business English and email writing.",
-        "metadata": {"user_id": "admin", "priority": "medium", "source": "ui"},
+        "metadata": {"user_id": "admin", "student_id": "S006", "priority": "medium", "source": "ui"},
         "expected_departments": ["student_onboarding"],
         "expected_follow_ups": ["tutor_management"],
         "pattern": "cascade",
@@ -36,7 +36,7 @@ SAMPLE_REQUESTS = [
     },
     {
         "text": "I was charged twice for my IELTS prep lesson and now I can't access my lesson recordings.",
-        "metadata": {"user_id": "student", "priority": "high", "source": "support_form"},
+        "metadata": {"user_id": "student", "student_id": "S003", "priority": "high", "source": "support_form"},
         "expected_departments": ["support"],
         "expected_follow_ups": [],
         "pattern": "parallel",  # billing + tech support handled within support dept
@@ -60,7 +60,7 @@ SAMPLE_REQUESTS = [
     },
     {
         "text": "Find a tutor for Lars Eriksson — he needs help with travel English at beginner level.",
-        "metadata": {"user_id": "admin", "priority": "medium", "source": "ui"},
+        "metadata": {"user_id": "admin", "student_id": "S005", "priority": "medium", "source": "ui"},
         "expected_departments": ["tutor_management"],
         "expected_follow_ups": [],
         "pattern": "single",
@@ -68,7 +68,7 @@ SAMPLE_REQUESTS = [
     },
     {
         "text": "Cancel my Thursday lesson and refund me.",
-        "metadata": {"user_id": "student", "priority": "medium", "source": "support_form"},
+        "metadata": {"user_id": "student", "student_id": "S002", "priority": "medium", "source": "support_form"},
         "expected_departments": ["support"],
         "expected_follow_ups": [],
         "pattern": "single",

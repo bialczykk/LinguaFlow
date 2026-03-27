@@ -101,6 +101,15 @@ def _render_request_input() -> None:
         with col2:
             st.caption(f"Pattern: **{sample.get('pattern', 'single')}**")
 
+        # Student ID — pre-filled from sample if available, editable
+        sample_sid = metadata.get("student_id", "")
+        student_id = st.text_input(
+            "Student ID (optional)",
+            value=sample_sid,
+            placeholder="e.g. S001, S002, ...",
+            key="p8_sample_student_id",
+        )
+
         # Show expected risk as a hint
         expected_risk = sample.get("expected_risk", "low")
         if expected_risk == "high":
@@ -108,7 +117,9 @@ def _render_request_input() -> None:
 
         can_submit = True
         submit_request_text = request_text
-        submit_metadata = metadata
+        submit_metadata = dict(metadata)  # copy to avoid mutating sample
+        if student_id.strip():
+            submit_metadata["student_id"] = student_id.strip()
     else:
         # Custom form
         submit_request_text = st.text_area(
@@ -124,11 +135,19 @@ def _render_request_input() -> None:
         with col2:
             source = st.selectbox("Source", _SOURCE_LABELS, key="p8_source")
 
+        student_id = st.text_input(
+            "Student ID (optional)",
+            placeholder="e.g. S001, S002, ...",
+            key="p8_custom_student_id",
+        )
+
         submit_metadata = {
             "user_id": "admin",
             "priority": priority,
             "source": source,
         }
+        if student_id.strip():
+            submit_metadata["student_id"] = student_id.strip()
         can_submit = bool(submit_request_text and submit_request_text.strip())
 
     st.divider()
