@@ -202,11 +202,12 @@ def department_executor(state: OrchestratorState) -> dict:
     # Context-specific details go in the user message (not the system prompt)
     # because agents are created once with a static system prompt.
     metadata = state.get("request_metadata", {})
-    student_id = metadata.get("student_id", metadata.get("user_id", "unknown"))
 
     parts = [f"Request: {request}"]
-    if student_id != "unknown":
-        parts.append(f"Student ID: {student_id}")
+    # Only include student_id if explicitly present in metadata (not user_id —
+    # admin-initiated requests have user_id="admin" which isn't a student).
+    if "student_id" in metadata:
+        parts.append(f"Student ID: {metadata['student_id']}")
     if current_task:
         parts.append(f"Follow-up context: {json.dumps(current_task)}")
 
