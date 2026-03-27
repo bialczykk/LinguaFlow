@@ -246,8 +246,10 @@ def department_executor(state: OrchestratorState) -> dict:
     # Department agents are prompted to emit follow_up_tasks as a JSON block.
     follow_up_tasks: list[dict] = []
     try:
-        # Look for a JSON object anywhere in the response text
-        json_match = re.search(r'\{[^{}]*"follow_up_tasks"[^{}]*\}', response_text, re.DOTALL)
+        # Look for a JSON object containing "follow_up_tasks" anywhere in the
+        # response text. We use a greedy match that allows nested braces so that
+        # follow_up_tasks values containing dicts (e.g. [{...}]) are captured.
+        json_match = re.search(r'\{"follow_up_tasks"\s*:\s*\[.*\]\}', response_text, re.DOTALL)
         if json_match:
             parsed = json.loads(json_match.group())
             follow_up_tasks = parsed.get("follow_up_tasks", [])
@@ -287,9 +289,16 @@ def result_aggregator(state: OrchestratorState) -> dict:
     department_results = state.get("department_results", [])
     completed_tasks = list(state.get("completed_tasks", []))
 
-    # Collect all follow-up tasks from every department result
+    # Only process NEW results — those not already in completed_tasks.
+    # Since department_results uses operator.add, it accumulates across cycles.
+    # Without this guard, follow_up_tasks from earlier cycles would be
+    # re-queued indefinitely, creating an infinite loop.
+    already_processed = len(completed_tasks)
+    new_results = department_results[already_processed:]
+
+    # Collect follow-up tasks only from NEW department results
     follow_ups: list[dict] = []
-    for result in department_results:
+    for result in new_results:
         tasks = result.get("follow_up_tasks") or []
         follow_ups.extend(tasks)
         # Move each result into the completed audit trail
